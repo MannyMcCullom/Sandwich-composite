@@ -131,13 +131,11 @@
     <ClCompile Include="fillingType.cpp" />
     <ClCompile Include="sandwichType.cpp" />
     <ClCompile Include="source.cpp" />
-    <ClCompile Include="testType.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="breadType.h" />
     <ClInclude Include="fillingType.h" />
     <ClInclude Include="sandwichType.h" />
-    <ClInclude Include="testType.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
