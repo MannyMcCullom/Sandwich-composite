@@ -1,3 +1,4 @@
+#include "cheese.h"
 #ifndef H_fillingType
 #define H_fillingType
 
@@ -9,6 +10,8 @@ public:
 	fillingType();
 
 	void Cheese(int numCheese, int cheeseType);
+	//determines which cheese will be used, and how much.
+	//Postcondition: Numcheese = numCheese, cheeseType = cheeseType, calls cheeses to make the choice.
 
 	void Meat(int numMeat, int meatType);
 
@@ -21,12 +24,13 @@ private:
 	//cheese
 	int Numcheese;
 	int cheeseType;
-	int cheddar;
+	cheese cheeses;
+	/*int cheddar;
 	int american;
 	int mozarella;
 	int ricotta;
 	int provolone;
-	int colbyJack;
+	int colbyJack;*/
 	//meat
 	int numMeat;
 	int meatType;
