@@ -5,14 +5,17 @@ fillingType::fillingType()
 
 }
 
-void fillingType::Cheese(int num, int Type) {
+void fillingType::Cheese(int num, int Type) 
+{
 
 }
 
-void fillingType::Veggies(int choice) {
+void fillingType::Veggies(int choice) 
+{
 
 }
 
-void fillingType::Meat(int meatType) {
+void fillingType::Meat(int numMeat, int meatType) 
+{
 
 }
