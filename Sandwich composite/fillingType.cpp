@@ -1,4 +1,8 @@
 #include "fillingType.h"
+#include <iostream>
+
+using namespace std;
+
 
 fillingType::fillingType()
 {
@@ -28,6 +32,9 @@ void fillingType::Cheese(int num, int Type)
 		break;
 	case 5:
 		colbyJack = num;
+		break;
+	default:
+		cout << "Please select an appropriate number." << endl;
 		break;
 	}
   
