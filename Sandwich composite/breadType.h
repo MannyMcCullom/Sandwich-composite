@@ -14,6 +14,8 @@ class breadType
 {
 public:
 	void setBread(string b);
+	//pre: 
+	//post:
 	string getBread() const;
 	void print() const;
 	breadType(string b = "Wheat");
