@@ -14,13 +14,23 @@ class breadType
 {
 public:
 	void setBread(string b);
-	//pre: 
-	//post:
+	//pre: Function that takes one string as an argument. Sets bread to the value of b
+	//post: bread = b
+
 	string getBread() const;
+	//pre: Function that returns the value of bread
+	//post: return bread;
+
 	void print() const;
+	//pre: Function that outputs the value of bread to the screen
+	//post: bread = " "
+
 	breadType(string b = "Wheat");
+	//pre: Default Constructor with a string parameter.
+	//post: bread = b. if b is not specified bread = "Wheat";
+
 private:
-	string bread;
+	string bread; //variable that stores the value for bread.
 };
 
 #endif
