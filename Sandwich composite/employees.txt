@@ -1,1 +1,2 @@
-"first" "last" "0" "0" "0"
+"Shaun" "Sarcona" "0" "0" "0"
+"Manny" "McCullom" "1" "0" "0"
