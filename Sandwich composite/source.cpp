@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-	sandwichType sandwich1;
+	sandwichType sandwich;
 
 	return 0;
 }
