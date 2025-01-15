@@ -8,31 +8,23 @@ class fillingType
 {
 public:
 	fillingType();
-	/*
-	void Cheese(int numCheese, int cheeseType);
+	
+	void Cheese();
 	//determines which cheese will be used, and how much.
-	//Postcondition: Numcheese = numCheese, cheeseType = cheeseType, calls cheeses to make the choice.
-	*/
+	//Postcondition: Calls functions from cheese
+	
 
 	void Meat(int numMeat, int meatType);
 
 	void Veggies(int choice);
 
 private:
-	/*
+	
 	//misc
 	bool peanutbutter;
 	bool jelly;
-	int cheeseType;
 	//cheese
-	int Numcheese;
-	cheese cheeses;
-	/*int cheddar;
-	int american;
-	int mozarella;
-	int ricotta;
-	int provolone;
-	int colbyJack;
+	cheese cheese;
 	//meat
 	int numMeat;
 	int meatType;
@@ -51,7 +43,7 @@ private:
 	int olives;
 	//roasted or not
 	bool roasted;
-	*/
+	
 
 
 

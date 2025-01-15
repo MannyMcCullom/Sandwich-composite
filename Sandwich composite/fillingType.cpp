@@ -10,15 +10,12 @@ fillingType::fillingType()
 
 }
 
-/*
-void fillingType::Cheese(int num, int Type) 
+
+void fillingType::Cheese() 
 {
-	Numcheese = num;
-	cheeseType = Type;
-	cheeses.cheeseChoice(Numcheese, cheeseType);
   
 }
-*/
+
 
 void fillingType::Veggies(int choice) 
 {
