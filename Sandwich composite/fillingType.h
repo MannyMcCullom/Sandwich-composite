@@ -7,7 +7,8 @@ using namespace std;
 class fillingType
 {
 public:
-	fillingType();
+	fillingType(bool peanutbutter, bool jelly);
+	fillingType(int cheeseNum, int cheeseType);
 	
 	void Cheese();
 	//determines which cheese will be used, and how much.
@@ -26,23 +27,16 @@ private:
 	//cheese
 	cheese cheese;
 	//meat
-	int numMeat;
-	int meatType;
-	int prosciutto;
-	int bologna;
-	int salami;
-	int bacon;
-	int turkey;
-	int chicken;
-	//veggies
-	int tomatoes;
-	int cucumbers;
-	int onions;
-	int peppers;
-	int celery;
-	int olives;
-	//roasted or not
-	bool roasted;
+	meat meat;
+	////veggies
+	//int tomatoes;
+	//int cucumbers;
+	//int onions;
+	//int peppers;
+	//int celery;
+	//int olives;
+	////roasted or not
+	//bool roasted;
 	
 
 
