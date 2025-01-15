@@ -1,2 +1,1 @@
-"Manny" "McCullom" "0" "53.42" "10"
-"Bobby" "King" "4" "153.94" "26"
+"first" "last" "0" "0" "0"

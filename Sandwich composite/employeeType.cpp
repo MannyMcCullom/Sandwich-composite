@@ -90,13 +90,13 @@ void employeeType::print() const
 	cout
 		<< "Employee Number: "
 		<< setfill('0')
-		<< setw(15)
+		<< setw(5)
 		<< getEmployeeNumber()
 		<< setfill(' ')
 		<< endl
 		<< "Name: " << getNameFull()
 		<< endl
-		<< "Saandwiches Made: $" << getEmployeeSandwichesMade()
+		<< "Saandwiches Made: " << getEmployeeSandwichesMade()
 		<< endl
 		<< "Balance: $" << getEmployeeBalance()
 		<< endl

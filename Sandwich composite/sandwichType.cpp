@@ -215,6 +215,127 @@ void sandwichType::fileEmployeeLoad()
 	}
 }
 
+void sandwichType::fileRecipeLoad()
+{
+	ifstream inFile;
+	inFile.open("recipes.txt");
+
+	if (inFile)
+	{
+		string line1;
+		string line2;
+		string tempLine;
+		string tempStr;
+		int q1;
+		int q2;
+		int numOfQuotes;
+		int numOfRecipesLoc = 0;
+		int currentRecipe = 0;
+
+		while (inFile)
+		{
+			numOfQuotes = 0;
+			getline(inFile, line1);
+
+			if (line2 != line1)
+			{
+				for (int index = 0; index < line1.length(); index++)
+				{
+					if (line1[index] == '"')
+					{
+						numOfQuotes++;
+					}
+				}
+
+				if (
+					numOfQuotes == 6 ||
+					numOfQuotes == 8 ||
+					numOfQuotes == 10 || 
+					numOfQuotes == 12 || 
+					numOfQuotes == 14 || 
+					numOfQuotes == 16 || 
+					numOfQuotes == 18 || 
+					numOfQuotes == 20)
+				{
+					numOfRecipesLoc++;
+				}
+			}
+
+			line2 = line1;
+		}
+
+		inFile.close();
+
+		setNumberOfEmployees(numOfRecipesLoc);
+
+		numOfRecipesLoc = numOfRecipes;
+
+		pRecipe = new string[numOfRecipesLoc];
+
+		inFile.open("recipes.txt");
+
+		line1 = "";
+		line2 = "";
+
+		while (inFile)
+		{
+			numOfQuotes = 0;
+			getline(inFile, line1);
+
+			if (line2 != line1)
+			{
+				for (int index = 0; index < line1.length(); index++)
+				{
+					if (line1[index] == '"')
+					{
+						numOfQuotes++;
+					}
+				}
+
+				if (
+					numOfQuotes == 6 ||
+					numOfQuotes == 8 ||
+					numOfQuotes == 10 ||
+					numOfQuotes == 12 ||
+					numOfQuotes == 14 ||
+					numOfQuotes == 16 ||
+					numOfQuotes == 18 ||
+					numOfQuotes == 20)
+				{
+					tempLine = line1;
+					for (int index = 0; index <= numOfQuotes / 2; index++)
+					{
+						q1 = tempLine.find('"');
+						q2 = tempLine.find('"', q1 + 1);
+
+						tempStr = tempLine.substr(1, q2 - 1);
+
+						pRecipe[index] = tempStr;
+
+						if (index == numOfQuotes / 2)
+						{
+							break;
+						}
+						else
+						{
+							tempLine = tempLine.substr(q2 + 2);
+						}
+					}
+
+					currentRecipe++;
+				}
+			}
+
+			line2 = line1;
+		}
+	}
+
+	else
+	{
+		cout << "couldn't open file" << endl;
+	}
+}
+
 void sandwichType::fileEmployeeSave()
 {
 	ofstream outFile;
@@ -252,6 +373,8 @@ void sandwichType::actionEmployeeHire(employeeType& newEmployee)
 	string newCode;
 
 	newEmployee.setEmployeeNumber();
+	newEmployee.setEmployeeBalance(0.00);
+	newEmployee.setEmployeeSandwichesMade(0);
 
 	employeeType* pNewEmployee;
 	pNewEmployee = new employeeType[numOfEmployees + 1];
@@ -273,6 +396,185 @@ void sandwichType::actionEmployeeHire(employeeType& newEmployee)
 	}
 
 	fileEmployeeSave();
+}
+
+void sandwichType::actionEmployeeFire(int currentEmployee)
+{
+	string response;
+	bool exit = false;
+
+	while (!exit)
+	{
+		skipLines(50);
+
+		longLine();
+		pEmployee[currentEmployee].print();
+
+		// Title Message
+		longLine();
+		cout << "Delete Account" << endl;
+
+		// Temp Message
+		printTempMessage();
+
+		// Controls
+		longLine();
+		cout
+			<< "y to delete account"
+			<< endl
+			<< "q to exit"
+			<< endl;
+
+		// Response
+		longLine();
+		getline(cin, response);
+
+		// Options
+		if (toupper(response[0]) == 'Q')
+		{
+			exit = true;
+		}
+
+		else if (toupper(response[0]) == 'Y')
+		{
+			employeeType* pNewEmployee;
+			pNewEmployee = new employeeType[numOfEmployees - 1];
+
+			int newEmployees = 0;
+			int oldEmployees = 0;
+
+			while (oldEmployees < numOfEmployees)
+			{
+				if (currentEmployee != oldEmployees)
+				{
+					pNewEmployee[newEmployees] = pEmployee[oldEmployees];
+
+					newEmployees++;
+				}
+
+				oldEmployees++;
+			}
+
+			pEmployee = pNewEmployee;
+
+			numOfEmployees--;
+
+			fileEmployeeSave();
+
+			exit = true;
+			tempMessage += "Employee Fired\n";
+		}
+	}
+}
+
+void sandwichType::actionChangeNameFirst(employeeType& newEmployee)
+{
+	string response;
+	bool exit = false;
+
+	while (!exit)
+	{
+		skipLines(50);
+
+		longLine();
+		cout
+			<< "First Name: " << newEmployee.getNameFirst()
+			<< endl
+			<< "Last Name: " << newEmployee.getNameLast()
+			<< endl
+			;
+
+		// Title Message
+		longLine();
+		cout << "Change First Name" << endl;
+
+		// Temp Message
+		printTempMessage();
+
+		// Controls
+		longLine();
+		cout
+			<< "enter new first name"
+			<< endl
+			<< "q to exit"
+			<< endl;
+
+		// Response
+		longLine();
+		getline(cin, response);
+
+		// Options
+		if (toupper(response[0]) == 'Q')
+		{
+			exit = true;
+		}
+
+		else if (response.length() > 1)
+		{
+			newEmployee.setNameFirst(response);
+			tempMessage += "First Name Changed\n";
+		}
+
+		else
+		{
+			tempMessage += "Invalid Input\n";
+		}
+	}
+}
+
+void sandwichType::actionChangeNameLast(employeeType& newEmployee)
+{
+	string response;
+	bool exit = false;
+
+	while (!exit)
+	{
+		skipLines(50);
+
+		longLine();
+		cout
+			<< "First Name: " << newEmployee.getNameFirst()
+			<< endl
+			<< "Last Name: " << newEmployee.getNameLast()
+			<< endl
+			;
+
+		// Title Message
+		longLine();
+		cout << "Change Last Name" << endl;
+
+		// Temp Message
+		printTempMessage();
+
+		// Controls
+		longLine();
+		cout
+			<< "enter new last name"
+			<< endl
+			<< "q to exit"
+			<< endl;
+
+		// Response
+		longLine();
+		getline(cin, response);
+
+		// Options
+		if (toupper(response[0]) == 'Q')
+		{
+			exit = true;
+		}
+
+		else if (response.length() > 1)
+		{
+			newEmployee.setNameLast(response);
+			tempMessage += "Last Name Changed\n";
+		}
+
+		else
+		{
+			tempMessage += "Invalid Input\n";
+		}
+	}
 }
 
 // Menus
@@ -324,7 +626,7 @@ void sandwichType::menuMain()
 
 	int selection = 0;
 	const int numOfSelections = 3;
-	string selections[numOfSelections] = { "Make Sandwiches", "Employee Management", "Recipe Management" };
+	string selections[numOfSelections] = { "Make Sandwiches", "Recipe Book",  "Employee Management" };
 
 	while (!exit)
 	{
@@ -383,24 +685,94 @@ void sandwichType::menuMain()
 				//gameMakeSandwiches();
 				break;
 			case 1:
-				menuEmployeeManagement();
+				menuManagementRecipe();
 				break;
 			case 2:
-				//menuRecipeManagement();
+				menuManagementEmployee();
 				break;
 			}
 		}
 	}
 }
 
-void sandwichType::menuEmployeeManagement()
+void sandwichType::menuManagementRecipe()
 {
 	string response;
 	bool exit = false;
 
 	int selection = 0;
-	const int numOfSelections = 3;
-	string selections[numOfSelections] = { "Select Employee", "Hire Employee", "Fire Employee"};
+	const int numOfSelections = 2;
+	string selections[numOfSelections] = { "View Recipes", "Create Recipe" };
+
+	while (!exit)
+	{
+		skipLines(50);
+
+		// Title Message
+		longLine();
+		cout << "Recipe Book" << endl;
+
+		// Temp Message
+		printTempMessage();
+
+		// Controls
+		longLine();
+		cout
+			<< "w or s to navigate"
+			<< endl
+			<< "e to make selection"
+			<< endl
+			<< "q to log out"
+			<< endl;
+
+		// Display Options
+		displayOptions(selections, selection, numOfSelections);
+
+		// Response
+		longLine();
+		getline(cin, response);
+
+		// Options
+		if (toupper(response[0]) == 'Q')
+		{
+			exit = true;
+		}
+
+		else if (toupper(response[0]) == 'W')
+		{
+			selection--;
+			checkSelection(selection, numOfSelections);
+		}
+
+		else if (toupper(response[0]) == 'S')
+		{
+			selection++;
+			checkSelection(selection, numOfSelections);
+		}
+
+		else if (toupper(response[0]) == 'E')
+		{
+			switch (selection)
+			{
+			case 0:
+				menuSelectRecipe();
+				break;
+			case 1:
+				menuCreateRecipe();
+				break;
+			}
+		}
+	}
+}
+
+void sandwichType::menuManagementEmployee()
+{
+	string response;
+	bool exit = false;
+
+	int selection = 0;
+	const int numOfSelections = 2;
+	string selections[numOfSelections] = { "Select Employee", "Hire Employee"};
 
 	while (!exit)
 	{
@@ -453,21 +825,22 @@ void sandwichType::menuEmployeeManagement()
 			switch (selection)
 			{
 			case 0:
-				menuEmployeeSelect();
+				menuSelectEmployeeOptions();
 				break;
 			case 1:
-				//menuEmployeeHire();
-				break;
-			case 2:
-				//actionEmployeeFire();
+				menuEmployeeHire();
 				break;
 			}
 		}
 	}
 }
 
-///*
-void sandwichType::menuEmployeeSelect()
+void sandwichType::menuSelectRecipe()
+{
+
+}
+
+void sandwichType::menuSelectEmployeeOptions()
 {
 	string response;
 	bool exit = false;
@@ -521,14 +894,7 @@ void sandwichType::menuEmployeeSelect()
 			{
 				cout << '[';
 
-				cout
-					<< setw(15)
-					<< setfill('0')
-					<< pEmployee[index].getEmployeeNumber()
-					<< setfill(' ')
-					<< setw(20)
-					<< pEmployee[index].getNameFull()
-					;
+				cout << pEmployee[index].getNameFull();
 
 				cout << ']' << endl;
 			}
@@ -537,14 +903,7 @@ void sandwichType::menuEmployeeSelect()
 			{
 				cout << ' ';
 
-				cout
-					<< setw(15)
-					<< setfill('0')
-					<< pEmployee[index].getEmployeeNumber()
-					<< setfill(' ')
-					<< setw(20)
-					<< pEmployee[index].getNameFull()
-					;
+				cout << pEmployee[index].getNameFull();
 
 				cout << ' ' << endl;
 			}
@@ -562,26 +921,73 @@ void sandwichType::menuEmployeeSelect()
 
 		else if (toupper(response[0]) == 'W')
 		{
-			// action
 			selection--;
 			checkSelection(selection, numOfSelections);
 		}
 
 		else if (toupper(response[0]) == 'S')
 		{
-			// action
 			selection++;
 			checkSelection(selection, numOfSelections);
 		}
 
 		else if (toupper(response[0]) == 'E')
 		{
-			//actionEmployeeSelect(selection);
-			//exit = true;
+			menuEmployeeOptions(selection);
 			tempMessage += "Employee Selected";
-			employeeSelected = true;
+			exit = true;
 		}
 	}
+}
+
+void sandwichType::menuEmployeeOptions(int currentEmployee)
+{
+	string response;
+	bool exit = false;
+
+	while (!exit)
+	{
+		skipLines(50);
+
+		longLine();
+		pEmployee[currentEmployee].print();
+
+		// Title Message
+		longLine();
+		cout << "Employee Options" << endl;
+
+		// Temp Message
+		printTempMessage();
+
+		// Controls
+		longLine();
+		cout
+			<< "e to fire Employee"
+			<< endl
+			<< "q to exit"
+			<< endl;
+
+		// Response
+		longLine();
+		getline(cin, response);
+
+		// Options
+		if (toupper(response[0]) == 'Q')
+		{
+			exit = true;
+		}
+
+		else if (toupper(response[0]) == 'E')
+		{
+			actionEmployeeFire(currentEmployee);
+			exit = true;
+		}
+	}
+}
+
+void sandwichType::menuCreateRecipe()
+{
+
 }
 
 void sandwichType::menuEmployeeHire()
@@ -639,14 +1045,12 @@ void sandwichType::menuEmployeeHire()
 
 		else if (toupper(response[0]) == 'W')
 		{
-			// action
 			selection--;
 			checkSelection(selection, numOfSelections);
 		}
 
 		else if (toupper(response[0]) == 'S')
 		{
-			// action
 			selection++;
 			checkSelection(selection, numOfSelections);
 		}
@@ -669,10 +1073,6 @@ void sandwichType::menuEmployeeHire()
 		}
 	}
 }
-
-// "First Name", "Last Name", "Hire Employee" };
-
-//*/
 
 sandwichType::sandwichType()
 {

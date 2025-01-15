@@ -34,21 +34,37 @@ public:
 	// File Management
 	void fileEmployeeLoad();
 
+	void fileRecipeLoad();
+
 	void fileEmployeeSave();
 
 	// Actions
 	void actionEmployeeHire(employeeType& newEmployee);
+
+	void actionEmployeeFire(int currentEmployee);
+
+	void actionChangeNameFirst(employeeType& newAccount);
+
+	void actionChangeNameLast(employeeType& newAccount);
 
 	// Menus
 	void menuStart();
 
 	void menuMain();
 
-	void menuEmployeeManagement();
+	void menuManagementRecipe();
 
-	void menuEmployeeSelect();
+	void menuManagementEmployee();
+
+	void menuSelectRecipe();
+
+	void menuSelectEmployeeOptions();
+
+	void menuCreateRecipe();
 
 	void menuEmployeeHire();
+
+	void menuEmployeeOptions(int selection);
 
 	// Constructors
 	sandwichType();
@@ -60,8 +76,10 @@ private:
 	breadType breadSlice[2];
 	fillingType* pFilling;
 	employeeType* pEmployee;
+	string* pRecipe;
 	bool employeeSelected;
 	int numOfEmployees;
+	int numOfRecipes;
 };
 
 #endif
