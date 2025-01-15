@@ -38,6 +38,8 @@ public:
 
 	void fileEmployeeSave();
 
+	void fileRecipeSave();
+
 	// Actions
 	void actionEmployeeHire(employeeType& newEmployee);
 
@@ -76,7 +78,7 @@ private:
 	breadType breadSlice[2];
 	fillingType* pFilling;
 	employeeType* pEmployee;
-	string* pRecipe;
+	string** pRecipe;
 	bool employeeSelected;
 	int numOfEmployees;
 	int numOfRecipes;

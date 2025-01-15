@@ -250,12 +250,14 @@ void sandwichType::fileRecipeLoad()
 				if (
 					numOfQuotes == 6 ||
 					numOfQuotes == 8 ||
-					numOfQuotes == 10 || 
-					numOfQuotes == 12 || 
-					numOfQuotes == 14 || 
-					numOfQuotes == 16 || 
-					numOfQuotes == 18 || 
-					numOfQuotes == 20)
+					numOfQuotes == 10 ||
+					numOfQuotes == 12 ||
+					numOfQuotes == 14 ||
+					numOfQuotes == 16 ||
+					numOfQuotes == 18 ||
+					numOfQuotes == 20 ||
+					numOfQuotes == 22 ||
+					numOfQuotes == 24)
 				{
 					numOfRecipesLoc++;
 				}
@@ -270,7 +272,7 @@ void sandwichType::fileRecipeLoad()
 
 		numOfRecipesLoc = numOfRecipes;
 
-		pRecipe = new string[numOfRecipesLoc];
+		pRecipe = new string * [numOfRecipesLoc];
 
 		inFile.open("recipes.txt");
 
@@ -292,6 +294,8 @@ void sandwichType::fileRecipeLoad()
 					}
 				}
 
+				pRecipe[currentRecipe] = new string[numOfQuotes / 2];
+
 				if (
 					numOfQuotes == 6 ||
 					numOfQuotes == 8 ||
@@ -300,9 +304,12 @@ void sandwichType::fileRecipeLoad()
 					numOfQuotes == 14 ||
 					numOfQuotes == 16 ||
 					numOfQuotes == 18 ||
-					numOfQuotes == 20)
+					numOfQuotes == 20 ||
+					numOfQuotes == 22 ||
+					numOfQuotes == 24)
 				{
 					tempLine = line1;
+
 					for (int index = 0; index <= numOfQuotes / 2; index++)
 					{
 						q1 = tempLine.find('"');
@@ -310,7 +317,7 @@ void sandwichType::fileRecipeLoad()
 
 						tempStr = tempLine.substr(1, q2 - 1);
 
-						pRecipe[index] = tempStr;
+						pRecipe[currentRecipe][index] = tempStr;
 
 						if (index == numOfQuotes / 2)
 						{
@@ -361,6 +368,38 @@ void sandwichType::fileEmployeeSave()
 			<< '"'
 			<< endl;
 		;
+	}
+
+	outFile.close();
+}
+
+void sandwichType::fileRecipeSave()
+{
+	ofstream outFile;
+	outFile.open("recipes.txt");
+
+	for (int index = 0; index < numOfRecipes; index++)
+	{
+		for (int index2 = 0; index2 < stoi(pRecipe[index][1]); index2++)
+		{
+			if (index2 < 2)
+			{
+				outFile
+					<< '"'
+					<< pRecipe[index][index2]
+					<< '"' << " "
+					;
+			}
+
+			else if (index < stoi(pRecipe[index][1]) + 3)
+			{
+				outFile
+					<< '"'
+					<< pRecipe[index][index2]
+					<< '"' << " "
+					;
+			}
+		}
 	}
 
 	outFile.close();
