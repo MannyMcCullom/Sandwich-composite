@@ -3,13 +3,18 @@
 
 #include "breadType.h"
 #include "fillingType.h"
+#include "employeeType.h"
 
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <iomanip>
 
 using namespace std;
 
 enum bread { TOP_SLICE, BOTTOM_SLICE };
+
+const int MAX_NO_EMPLOYEES = 10;
 
 class sandwichType
 {
@@ -24,8 +29,15 @@ public:
 
 	void displayOptions(string selections[], int selection, int numOfSelections);
 
+	void setNumberOfEmployees(int);
+
 	// File Management
 	void fileEmployeeLoad();
+
+	void fileEmployeeSave();
+
+	// Actions
+	void actionEmployeeHire(employeeType& newEmployee);
 
 	// Menus
 	void menuStart();
@@ -34,7 +46,9 @@ public:
 
 	void menuEmployeeManagement();
 
-	//void menuEmployeeSelect();
+	void menuEmployeeSelect();
+
+	void menuEmployeeHire();
 
 	// Constructors
 	sandwichType();
@@ -42,10 +56,12 @@ public:
 	~sandwichType();
 
 private:
+	string tempMessage;
 	breadType breadSlice[2];
 	fillingType* pFilling;
-	string tempMessage;
-
+	employeeType* pEmployee;
+	bool employeeSelected;
+	int numOfEmployees;
 };
 
 #endif
