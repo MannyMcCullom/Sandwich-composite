@@ -60,6 +60,12 @@ void sandwichType::displayOptions(string selections[], int selection, int numOfS
 	}
 }
 
+// File Management
+void sandwichType::fileEmployeeLoad()
+{
+
+}
+
 // Menus
 void sandwichType::menuStart()
 {
@@ -72,7 +78,7 @@ void sandwichType::menuStart()
 
 		// Title Message
 		longLine();
-		cout << "Bank" << endl;
+		cout << "C++ Deli" << endl;
 
 		// Temp Message
 		printTempMessage();
@@ -80,9 +86,9 @@ void sandwichType::menuStart()
 		// Controls
 		longLine();
 		cout
-			<< "e to use bank"
+			<< "e to make sandwiches"
 			<< endl
-			<< "q to leave bank"
+			<< "q to leave deli"
 			<< endl;
 
 		// Response
@@ -97,17 +103,285 @@ void sandwichType::menuStart()
 
 		else if (toupper(response[0]) == 'E')
 		{
-			//menuLogin();
+			menuMain();
 		}
 	}
 }
 
+void sandwichType::menuMain()
+{
+	string response;
+	bool exit = false;
+
+	int selection = 0;
+	const int numOfSelections = 3;
+	string selections[numOfSelections] = { "Make Sandwiches", "Employee Management", "Recipe Management" };
+
+	while (!exit)
+	{
+		skipLines(50);
+
+		// Title Message
+		longLine();
+		cout << "Main Menu" << endl;
+
+		// Temp Message
+		printTempMessage();
+
+		// Controls
+		longLine();
+		cout
+			<< "e to make selection"
+			<< endl
+			<< "w or s to navigate"
+			<< endl
+			<< "q to exit"
+			<< endl;
+
+		// Display Options
+		displayOptions(selections, selection, numOfSelections);
+
+		// Response
+		longLine();
+		getline(cin, response);
+
+		// Options
+		if (toupper(response[0]) == 'Q')
+		{
+			exit = true;
+		}
+
+		else if (toupper(response[0]) == 'W')
+		{
+			// action
+			selection--;
+			checkSelection(selection, numOfSelections);
+		}
+
+		else if (toupper(response[0]) == 'S')
+		{
+			// action
+			selection++;
+			checkSelection(selection, numOfSelections);
+		}
+
+		else if (toupper(response[0]) == 'E')
+		{
+			// action
+			switch (selection)
+			{
+			case 0:
+				//gameMakeSandwiches();
+				break;
+			case 1:
+				menuEmployeeManagement();
+				break;
+			case 2:
+				//menuRecipeManagement();
+				break;
+			}
+		}
+	}
+}
+
+void sandwichType::menuEmployeeManagement()
+{
+	string response;
+	bool exit = false;
+
+	int selection = 0;
+	const int numOfSelections = 3;
+	string selections[numOfSelections] = { "Select Employee", "Hire Employee", "Fire Employee"};
+
+	while (!exit)
+	{
+		skipLines(50);
+
+		// Title Message
+		longLine();
+		cout << "Employee Management" << endl;
+
+		// Temp Message
+		printTempMessage();
+
+		// Controls
+		longLine();
+		cout
+			<< "e to make selection"
+			<< endl
+			<< "w or s to navigate"
+			<< endl
+			<< "q to exit"
+			<< endl;
+
+		// Display Options
+		displayOptions(selections, selection, numOfSelections);
+
+		// Response
+		longLine();
+		getline(cin, response);
+
+		// Options
+		if (toupper(response[0]) == 'Q')
+		{
+			exit = true;
+		}
+
+		else if (toupper(response[0]) == 'W')
+		{
+			selection--;
+			checkSelection(selection, numOfSelections);
+		}
+
+		else if (toupper(response[0]) == 'S')
+		{
+			selection++;
+			checkSelection(selection, numOfSelections);
+		}
+
+		else if (toupper(response[0]) == 'E')
+		{
+			switch (selection)
+			{
+			case 0:
+				menuEmployeeManagement();
+				break;
+			case 1:
+				//menuEmployeeCreate();
+				break;
+			case 2:
+				//actionEmployeeFire();
+				break;
+			}
+		}
+	}
+}
+
+/*
+void sandwichType::menuEmployeeSelect()
+{
+	string response;
+	bool exit = false;
+
+	fileEmployeeLoad();
+
+	int selection = 0;
+	int numOfSelections = numOfEmployees;
+	string* selections;
+	selections = new string[numOfSelections];
+
+	while (!exit)
+	{
+		if (numOfEmployees < 1)
+		{
+			tempMessage += "No Accounts";
+			break;
+		}
+
+		skipLines(50);
+
+		// User Display
+		longLine();
+		pEmployee[selection].print();
+
+		// Title Message
+		longLine();
+		cout
+			<< "Select Employee"
+			<< endl;
+
+		// Temp Message
+		printTempMessage();
+
+		// Controls
+		longLine();
+		cout
+			<< "e to select employee"
+			<< endl
+			<< "w or s to navigate"
+			<< endl
+			<< "q to exit"
+			<< endl;
+
+		// Options
+		longLine();
+
+		for (int index = 0; index < numOfSelections; index++)
+		{
+			if (index == selection)
+			{
+				cout << '[';
+
+				cout
+					<< setw(15)
+					<< setfill('0')
+					<< pEmployee[index].getEmployeeNumber()
+					<< setfill(' ')
+					<< setw(20)
+					<< pEmployee[index].getNameFull()
+					;
+
+				cout << ']' << endl;
+			}
+
+			else
+			{
+				cout << ' ';
+
+				cout
+					<< setw(15)
+					<< setfill('0')
+					<< pEmployee[index].getEmployeeNumber()
+					<< setfill(' ')
+					<< setw(20)
+					<< pEmployee[index].getNameFull()
+					;
+
+				cout << ' ' << endl;
+			}
+		}
+
+
+		// Response
+		longLine();
+		getline(cin, response);
+
+		// Options
+		if (toupper(response[0]) == 'Q')
+		{
+			exit = true;
+		}
+
+		else if (toupper(response[0]) == 'W')
+		{
+			// action
+			selection--;
+			checkSelection(selection, numOfSelections);
+		}
+
+		else if (toupper(response[0]) == 'S')
+		{
+			// action
+			selection++;
+			checkSelection(selection, numOfSelections);
+		}
+
+		else if (toupper(response[0]) == 'E')
+		{
+			//actionEmployeeSelect(selection);
+			employeeSelected = true;
+			exit = true;
+		}
+	}
+}
+*/
+
 sandwichType::sandwichType()
 {
-
+	menuStart();
 }
 
 sandwichType::~sandwichType()
 {
-	delete[] pFilling;
+	//delete[] pFilling;
 }

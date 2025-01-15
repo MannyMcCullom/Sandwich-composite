@@ -24,8 +24,17 @@ public:
 
 	void displayOptions(string selections[], int selection, int numOfSelections);
 
+	// File Management
+	void fileEmployeeLoad();
+
 	// Menus
 	void menuStart();
+
+	void menuMain();
+
+	void menuEmployeeManagement();
+
+	//void menuEmployeeSelect();
 
 	// Constructors
 	sandwichType();
@@ -33,9 +42,8 @@ public:
 	~sandwichType();
 
 private:
-	breadType breadSlice[BOTTOM_SLICE + 1];
+	breadType breadSlice[2];
 	fillingType* pFilling;
-
 	string tempMessage;
 
 };
