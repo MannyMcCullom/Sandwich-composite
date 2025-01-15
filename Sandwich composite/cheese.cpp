@@ -33,6 +33,28 @@ void cheese::cheeseChoice(int num, int Type)
 	}
 }
 
+void cheese::drawCheese() {
+	cout << "          ___" << endl;
+	cout << "        .'o O'-._" << endl;
+	cout << "       / O o_.-`|" << endl;
+	cout << "      /O_.-'  O |" << endl;
+	cout << "      | o   o .-`" << endl;
+	cout << "      |o O_.-'" << endl;
+	cout << "      '--`" << endl;
+}
+
+void cheese::drawCheeseSlice() {
+	cout << "       ,--------," << endl;
+	cout << "      /        /" << endl;
+	cout << "     /        /" << endl;
+	cout << "     '-------'";
+	if (cheddar >= 1) {
+		cout << "\tx" << cheddar << endl;
+	} else if (american >= 1)  {
+		cout << "\tx" << american << endl;
+	}
+}
+
 cheese::cheese()
 {
 	cheddar = 0;

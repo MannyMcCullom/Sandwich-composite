@@ -1,4 +1,5 @@
 #pragma once
+#include "meat.h"
 using namespace std;
 
 class cheese
@@ -15,6 +16,11 @@ public:
 	void cheeseChoice(int numCheese, int cheeseType);
 	//determines which cheese will be used, and how much.
 	//Postcondition: cheeseType determines the selected cheese, and numCheese determines how much cheese.
+
+	void drawCheese();
+	void drawCheeseSlice();
+	//pre: Draws ASCII Art of cheese
+	//post: cout multipe lines
 
 	cheese();
 	//Default constructor.
