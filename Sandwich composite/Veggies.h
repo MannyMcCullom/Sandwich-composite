@@ -11,11 +11,11 @@ private:
 
 public:
 	void veggiesChoice(bool choice[6]);
-	//determines which cheese will be used, and how much.
-	//Postcondition: cheeseType determines the selected cheese, and numCheese determines how much cheese.
+	//determines which veggies will be used
+	//Postcondition: Sets all the bool variables based on array
 
 	Veggies();
 	//Default constructor.
-	//Postcondition: cheddar = 0, american = 0, mozarella = 0, ricotta = 0, provolone = 0, colbyJack = 0.
+	//Postcondition: tomatoes = 0, cucumbers = 0, onions = 0, peppers = 0, celery = 0, olives = 0.
 };
 

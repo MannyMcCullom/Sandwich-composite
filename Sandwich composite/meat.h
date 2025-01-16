@@ -11,11 +11,11 @@ private:
 	
 public:
 	void meatChoice(bool choice[6]);
-	//determines which cheese will be used, and how much.
-	//Postcondition: cheeseType determines the selected cheese, and numCheese determines how much cheese.
+	//determines which Meat will be used.
+	//Postcondition: Sets all the bool variables based on array
 
 	meat();
 	//Default constructor.
-	//Postcondition: cheddar = 0, american = 0, mozarella = 0, ricotta = 0, provolone = 0, colbyJack = 0.
+	//Postcondition: prosciutto = 0, bologna = 0, salami = 0, bacon = 0, turkey = 0, chicken = 0.
 };
 
