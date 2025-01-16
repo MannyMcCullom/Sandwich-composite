@@ -44,7 +44,13 @@ public:
 	void fileRecipeSave();
 
 	// Actions
-	void actionRecipeCreate(string *newRecipe);
+	void actionRecipeCreate();
+
+	void actionLayerAdd();
+
+	void actionLayerRemove();
+
+	void actionLayerRemoveAll();
 
 	void actionEmployeeHire(employeeType& newEmployee);
 
@@ -52,7 +58,7 @@ public:
 
 	void actionEmployeeFire(int currentEmployee);
 
-	void actionChangeNameRecipe(string *newRecipe);
+	void actionChangeNameRecipe();
 
 	void actionChangeNameFirst(employeeType& newAccount);
 
@@ -73,7 +79,7 @@ public:
 
 	void menuCreateRecipe();
 
-	void menuLayers(string *newRecipe);
+	void menuLayers();
 
 	void menuEmployeeHire();
 
