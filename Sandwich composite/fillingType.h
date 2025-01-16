@@ -21,6 +21,12 @@ public:
 	//Postcondition: Calls functions from meat
 
 	void veggies(bool choice[6]);
+	//determines which veggies types will be used.
+	//Postcondition: Calls functions from veggies
+
+	void roast(bool roast);
+	//determines if to use roasted ingredients
+	//Postcondition: sets roasted to true or false
 
 private:
 	

@@ -33,6 +33,10 @@ void fillingType::veggies(bool choice[6])
 	Veggies.veggiesChoice(choice);
 }
 
+void fillingType::roast(bool r) {
+	roasted = r;
+}
+
 void fillingType::Meat(bool choice[6])
 {
 	meat.meatChoice(choice);
