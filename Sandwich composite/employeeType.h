@@ -51,7 +51,6 @@ private:
 	double employeeBalance;
 	int employeeNumOfSandwichesMade;
 	
-
 	static int employeeNumberHigh;
 };
 

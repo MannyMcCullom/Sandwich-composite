@@ -15,6 +15,7 @@ using namespace std;
 enum bread { TOP_SLICE, BOTTOM_SLICE };
 
 const int MAX_NO_EMPLOYEES = 10;
+const int MAX_NO_RECIPES = 10;
 
 class sandwichType
 {
@@ -31,6 +32,8 @@ public:
 
 	void setNumberOfEmployees(int);
 
+	void setNumberOfRecipes(int);
+
 	// File Management
 	void fileEmployeeLoad();
 
@@ -41,9 +44,15 @@ public:
 	void fileRecipeSave();
 
 	// Actions
+	void actionRecipeCreate(string *newRecipe);
+
 	void actionEmployeeHire(employeeType& newEmployee);
 
+	void actionRecipeErase(int currentRecipe);
+
 	void actionEmployeeFire(int currentEmployee);
+
+	void actionChangeNameRecipe(string *newRecipe);
 
 	void actionChangeNameFirst(employeeType& newAccount);
 
@@ -64,7 +73,11 @@ public:
 
 	void menuCreateRecipe();
 
+	void menuLayers(string *newRecipe);
+
 	void menuEmployeeHire();
+
+	void menuRecipeOptions(int selection);
 
 	void menuEmployeeOptions(int selection);
 
@@ -82,6 +95,7 @@ private:
 	bool employeeSelected;
 	int numOfEmployees;
 	int numOfRecipes;
+	int* numOfRecipeComp;
 };
 
 #endif
