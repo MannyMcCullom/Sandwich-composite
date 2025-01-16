@@ -7,15 +7,18 @@ using namespace std;
 class fillingType
 {
 public:
+	fillingType();
 	fillingType(bool peanutbutter, bool jelly);
-	fillingType(int cheeseNum, int cheeseType);
+	fillingType(int cheeseNum, int cheeseType, bool roast);
 	
-	void Cheese();
+	void Cheese(int cheeseNum, int cheeseType);
 	//determines which cheese will be used, and how much.
 	//Postcondition: Calls functions from cheese
 	
 
-	void Meat(int numMeat, int meatType);
+	void Meat(bool choice[6]);
+	//determines which meat types will be used.
+	//Postcondition: Calls functions from meat
 
 	void Veggies(int choice);
 
@@ -35,8 +38,8 @@ private:
 	//int peppers;
 	//int celery;
 	//int olives;
-	////roasted or not
-	//bool roasted;
+	//roasted or not
+	bool roasted;
 	
 
 
