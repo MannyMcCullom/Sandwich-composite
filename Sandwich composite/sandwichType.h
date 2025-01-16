@@ -75,6 +75,16 @@ public:
 
 	void menuSelectRecipe();
 
+	void menuSelectLayer(string &layerName, bool &layerSelected);
+
+	//void menuSelectLayerBread(string& layerName, bool& layerSelected);
+
+	//void menuSelectLayerMeat(string& layerName, bool& layerSelected);
+
+	//void menuSelectLayerCheese(string& layerName, bool& layerSelected);
+
+	//void menuSelectLayerVeggies(string& layerName, bool& layerSelected);
+
 	void menuSelectEmployeeOptions();
 
 	void menuCreateRecipe();
@@ -94,14 +104,15 @@ public:
 
 private:
 	string tempMessage;
-	breadType breadSlice[2];
-	fillingType* pFilling;
 	employeeType* pEmployee;
 	string** pRecipe;
+	int* pNumOfRecipeComp;
 	bool employeeSelected;
 	int numOfEmployees;
 	int numOfRecipes;
-	int* numOfRecipeComp;
+	int currentRecipe;
+	//breadType breadSlice[2];
+	//fillingType* pFilling;
 };
 
 #endif
