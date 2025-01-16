@@ -20,7 +20,7 @@ public:
 	//determines which meat types will be used.
 	//Postcondition: Calls functions from meat
 
-	void Veggies(int choice);
+	void veggies(bool choice[6]);
 
 private:
 	
@@ -32,12 +32,7 @@ private:
 	//meat
 	meat meat;
 	////veggies
-	//int tomatoes;
-	//int cucumbers;
-	//int onions;
-	//int peppers;
-	//int celery;
-	//int olives;
+	Veggies Veggies;
 	//roasted or not
 	bool roasted;
 	

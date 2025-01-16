@@ -28,9 +28,9 @@ void fillingType::Cheese(int cheeseNum, int cheeseType)
 }
 
 
-void fillingType::Veggies(int choice) 
+void fillingType::veggies(bool choice[6])
 {
-
+	Veggies.veggiesChoice(choice);
 }
 
 void fillingType::Meat(bool choice[6])
