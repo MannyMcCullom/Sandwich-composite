@@ -15,7 +15,19 @@ void sandwichType::longLine()
 
 void sandwichType::skipLines(int num)
 {
+	
+	
+	//cout << "System: " << system << endl;
+#ifdef _WIN32
 	system("cls");
+	//cout << "Hello, Windows!" << std::endl;
+#elif __linux__
+	cout << "Hello, GNU/Linux!" << std::endl;
+#elif __APPLE__
+	cout << "Hello, macOS!" << std::endl;
+#else
+	cout << "Hello, unknown OS!" << std::endl;
+#endif
 }
 
 void sandwichType::checkSelection(int& selection, int numOfSelections)
