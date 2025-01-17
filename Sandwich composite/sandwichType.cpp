@@ -15,18 +15,15 @@ void sandwichType::longLine()
 
 void sandwichType::skipLines(int num)
 {
-	
-	
-	//cout << "System: " << system << endl;
 #ifdef _WIN32
 	system("cls");
-	//cout << "Hello, Windows!" << std::endl;
-#elif __linux__
-	cout << "Hello, GNU/Linux!" << std::endl;
-#elif __APPLE__
-	cout << "Hello, macOS!" << std::endl;
+
 #else
-	cout << "Hello, unknown OS!" << std::endl;
+	for (int index = 0; index < num; index++)
+	{
+		cout << endl;
+	}
+
 #endif
 }
 
@@ -305,8 +302,6 @@ void sandwichType::fileRecipeLoad()
 
 		pNumOfRecipeComp = new int[numOfRecipes];
 
-		//numOfRecipesLoc = numOfRecipes;
-
 		pRecipe = new string * [numOfRecipes];
 
 		inFile.open("recipes.txt");
@@ -456,7 +451,6 @@ void sandwichType::actionLayerAdd()
 			}
 
 			newRecipe[pNumOfRecipeComp[numOfRecipes] - 1] = layerName;
-			//newRecipe[pNumOfRecipeComp[numOfRecipes] - 1] = "new layer";
 
 			pRecipe[numOfRecipes] = newRecipe;
 		}
@@ -464,7 +458,7 @@ void sandwichType::actionLayerAdd()
 	
 	else
 	{
-		// At Max Layer
+		tempMessage += "At Max Layer\n";
 	}
 }
 
@@ -489,6 +483,7 @@ void sandwichType::actionLayerRemove()
 	else
 	{
 		// no layers to remove
+		tempMessage += "No Layer to Remove\n";
 	}
 }
 
@@ -510,6 +505,7 @@ void sandwichType::actionLayerRemoveAll()
 	else
 	{
 		// no layers to remove
+		tempMessage += "No Layers to Remove";
 	}
 }
 
@@ -550,21 +546,7 @@ void sandwichType::actionRecipeErase(int currentRecipe)
 
 		// User Display
 		longLine();
-		cout << "Recipe: " << pRecipe[currentRecipe][0] << endl;
-
-		if (pNumOfRecipeComp[currentRecipe] > 1)
-		{
-			cout << "Ingredients: " << endl;
-
-			for (int index = 1; index < pNumOfRecipeComp[currentRecipe]; index++)
-			{
-				cout
-					<< '\t'
-					<< pRecipe[currentRecipe][index]
-					<< endl
-					;
-			}
-		}
+		displayCurrentRecipe(currentRecipe);
 
 		// Title Message
 		longLine();
@@ -714,21 +696,7 @@ void sandwichType::actionChangeNameRecipe()
 
 		// User Display
 		longLine();
-		cout << "Recipe: " << pRecipe[numOfRecipes][0] << endl;
-
-		if (pNumOfRecipeComp[numOfRecipes] > 1)
-		{
-			cout << "Ingredients: " << endl;
-
-			for (int layer = pNumOfRecipeComp[numOfRecipes] - 1; layer > 0; layer--)
-			{
-				cout
-					<< '\t'
-					<< pRecipe[numOfRecipes][layer]
-					<< endl
-					;
-			}
-		}
+		displayCurrentRecipe(numOfRecipes);
 
 		// Title Message
 		longLine();
@@ -1160,7 +1128,6 @@ void sandwichType::menuSelectRecipe()
 
 		// User Display
 		longLine();
-
 		displayCurrentRecipe(selection);
 		
 		// Title Message
@@ -1252,21 +1219,7 @@ void sandwichType::menuSelectLayer(string& layerName, bool& layerSelected)
 
 		// User Display
 		longLine();
-		cout << "Recipe: " << pRecipe[currentRecipe][0] << endl;
-
-		if (pNumOfRecipeComp[currentRecipe] > 1)
-		{
-			cout << "Ingredients: " << endl;
-
-			for (int index = 1; index < pNumOfRecipeComp[currentRecipe]; index++)
-			{
-				cout
-					<< '\t'
-					<< pRecipe[currentRecipe][index]
-					<< endl
-					;
-			}
-		}
+		displayCurrentRecipe(selection);
 
 		// Title Message
 		longLine();
@@ -1458,19 +1411,7 @@ void sandwichType::menuSelectLayerMeat(string& layerName, bool& layerSelected)
 
 		// User Display
 		longLine();
-		if (pNumOfRecipeComp[currentRecipe] > 1)
-		{
-			cout << "Ingredients: " << endl;
-
-			for (int index = 1; index < pNumOfRecipeComp[currentRecipe]; index++)
-			{
-				cout
-					<< '\t'
-					<< pRecipe[currentRecipe][index]
-					<< endl
-					;
-			}
-		}
+		displayCurrentRecipe(currentRecipe);
 
 		// Title Message
 		longLine();
@@ -1545,21 +1486,7 @@ void sandwichType::menuSelectLayerCheese(string& layerName, bool& layerSelected)
 
 		// User Display
 		longLine();
-		cout << "Recipe: " << pRecipe[currentRecipe][0] << endl;
-
-		if (pNumOfRecipeComp[currentRecipe] > 1)
-		{
-			cout << "Ingredients: " << endl;
-
-			for (int index = 1; index < pNumOfRecipeComp[currentRecipe]; index++)
-			{
-				cout
-					<< '\t'
-					<< pRecipe[currentRecipe][index]
-					<< endl
-					;
-			}
-		}
+		displayCurrentRecipe(currentRecipe);
 
 		// Title Message
 		longLine();
@@ -1634,21 +1561,7 @@ void sandwichType::menuSelectLayerVeggies(string& layerName, bool& layerSelected
 
 		// User Display
 		longLine();
-		cout << "Recipe: " << pRecipe[currentRecipe][0] << endl;
-
-		if (pNumOfRecipeComp[currentRecipe] > 1)
-		{
-			cout << "Ingredients: " << endl;
-
-			for (int index = 1; index < pNumOfRecipeComp[currentRecipe]; index++)
-			{
-				cout
-					<< '\t'
-					<< pRecipe[currentRecipe][index]
-					<< endl
-					;
-			}
-		}
+		displayCurrentRecipe(currentRecipe);
 
 		// Title Message
 		longLine();
@@ -1817,21 +1730,7 @@ void sandwichType::menuRecipeOptions(int currentRecipe)
 
 		// User Display
 		longLine();
-		cout << "Recipe: " << pRecipe[currentRecipe][0] << endl;
-
-		if (pNumOfRecipeComp[currentRecipe] > 1)
-		{
-			cout << "Ingredients: " << endl;
-
-			for (int index = 1; index < pNumOfRecipeComp[currentRecipe]; index++)
-			{
-				cout
-					<< '\t'
-					<< pRecipe[currentRecipe][index]
-					<< endl
-					;
-			}
-		}
+		displayCurrentRecipe(currentRecipe);
 
 		// Title Message
 		longLine();
@@ -1949,21 +1848,7 @@ void sandwichType::menuCreateRecipe()
 
 		// User Display
 		longLine();
-		cout << "Recipe: " << pRecipe[numOfRecipes][0] << endl;
-
-		if (pNumOfRecipeComp[numOfRecipes] > 1)
-		{
-			cout << "Ingredients: " << endl;
-
-			for (int layer = pNumOfRecipeComp[numOfRecipes] - 1; layer > 0; layer--)
-			{
-				cout
-					<< '\t'
-					<< pRecipe[numOfRecipes][layer]
-					<< endl
-					;
-			}
-		}
+		displayCurrentRecipe(currentRecipe);
 		
 
 		// Title Message
@@ -2076,24 +1961,7 @@ void sandwichType::menuLayers()
 
 		// User Display
 		longLine();
-		cout << "Recipe: " << pRecipe[numOfRecipes][0] << endl;
-
-		if (pNumOfRecipeComp[numOfRecipes] > 1)
-		{
-			if (pNumOfRecipeComp[currentRecipe] > 1)
-			{
-				cout << "Ingredients: " << endl;
-
-				for (int index = 1; index < pNumOfRecipeComp[currentRecipe]; index++)
-				{
-					cout
-						<< '\t'
-						<< pRecipe[currentRecipe][index]
-						<< endl
-						;
-				}
-			}
-		}
+		displayCurrentRecipe(currentRecipe);
 
 		// Title Message
 		longLine();
