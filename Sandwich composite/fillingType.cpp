@@ -37,6 +37,10 @@ string fillingType::VeggieV2(int veggieNum, int veggieType)
 	return Veggies.veggiesChoiceV2(veggieNum, veggieType);
 }
 
+string fillingType::MeatV2(int veggieNum, int veggieType)
+{
+	return meat.meatChoiceV2(veggieNum, veggieType);
+}
 
 void fillingType::veggies(bool choice[6])
 {

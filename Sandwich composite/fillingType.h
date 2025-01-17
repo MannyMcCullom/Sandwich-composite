@@ -21,6 +21,8 @@ public:
 	
 	string VeggieV2(int cheeseNum, int cheeseType);
 
+	string MeatV2(int cheeseNum, int cheeseType);
+
 	void Meat(bool choice[6]);
 	//determines which meat types will be used.
 	//Postcondition: Calls functions from meat
