@@ -16,6 +16,8 @@ public:
 	void Cheese(int cheeseNum, int cheeseType);
 	//determines which cheese will be used, and how much.
 	//Postcondition: Calls functions from cheese
+
+	string CheeseV2(int cheeseNum, int cheeseType);
 	
 
 	void Meat(bool choice[6]);

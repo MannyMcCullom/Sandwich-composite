@@ -27,6 +27,11 @@ void fillingType::Cheese(int cheeseNum, int cheeseType)
 	cheese.cheeseChoice(cheeseNum, cheeseType);
 }
 
+string fillingType::CheeseV2(int cheeseNum, int cheeseType)
+{
+	return cheese.cheeseChoiceV2(cheeseNum, cheeseType);
+}
+
 
 void fillingType::veggies(bool choice[6])
 {

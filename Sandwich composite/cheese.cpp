@@ -33,6 +33,36 @@ void cheese::cheeseChoice(int num, int Type)
 	}
 }
 
+string cheese::cheeseChoiceV2(int num, int Type)
+{
+	//would there be a loop somewhere for multiple cheese types?
+	//if num of cheese is above 0, include in final cout statement.
+	string cheese = "";
+	switch (Type)
+	{
+	case 0:
+		cheese = "cheddar";
+		break;
+	case 1:
+		cheese = "american";
+		break;
+	case 2:
+		cheese = "mozarella";
+		break;
+	case 3:
+		cheese = "ricotta";
+		break;
+	case 4:
+		cheese = "provolone";
+		break;
+	case 5:
+		cheese = "colbyJack";
+		break;
+	}
+
+	return cheese + " cheese";
+}
+
 void cheese::drawCheese() {
 	cout << "          ___" << endl;
 	cout << "        .'o O'-._" << endl;

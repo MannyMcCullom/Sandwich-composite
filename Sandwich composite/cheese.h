@@ -18,6 +18,8 @@ public:
 	//determines which cheese will be used, and how much.
 	//Postcondition: cheeseType determines the selected cheese, and numCheese determines how much cheese.
 
+	string cheeseChoiceV2(int num, int Type);
+
 	void drawCheese();
 	void drawCheeseSlice();
 	//pre: Draws ASCII Art of cheese
