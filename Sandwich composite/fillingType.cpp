@@ -94,3 +94,43 @@ void fillingType::Meat(bool choice[6])
 {
 	meat.meatChoice(choice);
 }
+
+string fillingType::returnMeat() const {
+	bool choice[6];
+	meat.showChoices(choice);
+	int count = 0;
+	string allNames = " ";
+	if (choice[0] == true) {
+		allNames += "prosciutto, ";
+		count++;
+	}
+	if (choice[1] == true) {
+		allNames += "bologna, ";
+		count++;
+	}
+	if (choice[2] == true) {
+		allNames += "salami, ";
+		count++;
+	}
+	if (choice[3] == true) {
+		allNames += "bacon, ";
+		count++;
+	}
+	if (choice[4] == true) {
+		allNames += "turkey, ";
+		count++;
+	}
+	if (choice[5] == true) {
+		allNames += "chicken, ";
+		count++;
+	}
+	if (allNames.length() >= 1) {
+		allNames.resize(allNames.length() - 2); //remove last ", " 2 character (used resize instead of erase, cause faster)
+	}
+	if (count <= 0) {
+		return "No Veggies Selected";
+	}
+	else {
+		return allNames;
+	}
+}

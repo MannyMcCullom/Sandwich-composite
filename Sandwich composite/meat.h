@@ -14,6 +14,10 @@ public:
 	//determines which Meat will be used.
 	//Postcondition: Sets all the bool variables based on array
 
+	void showChoices(bool choice[6]) const;
+	//changes an array according to all the meat
+	//post: modifies array to match all private variables
+
 	meat();
 	//Default constructor.
 	//Postcondition: prosciutto = 0, bologna = 0, salami = 0, bacon = 0, turkey = 0, chicken = 0.

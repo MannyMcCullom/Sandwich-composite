@@ -48,10 +48,6 @@ private:
 	Veggies Veggies;
 	//roasted or not
 	bool roasted;
-	
-
-
-
 
 };
 

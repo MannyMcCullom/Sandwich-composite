@@ -9,6 +9,15 @@ void meat::meatChoice(bool choice[6]) {
 	chicken = choice[5];
 }
 
+void meat::showChoices(bool choice[6]) const {
+	choice[0] = prosciutto;
+	choice[1] = bologna;
+	choice[2] = salami;
+	choice[3] = bacon;
+	choice[4] = turkey;
+	choice[5] = chicken;
+}
+
 meat::meat() {
 	prosciutto = false;
 	bologna = false;
