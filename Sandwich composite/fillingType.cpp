@@ -153,17 +153,25 @@ bool fillingType::checkFilling(bool reqVeg[6], bool reqMeat[6]) const {
 	bool choices[6];
 	bool result[2];
 	Veggies.showChoices(choices);
-	result[0] = compareArray(choices, reqVeg);
+	for (int i = 0; i < 6; i++) {
+		if (choices[i] != reqVeg[i]) {
+			result[0] = false;
+		}
+	}
 	meat.showChoices(choices);
-	result[1] = compareArray(choices, reqMeat);
+	for (int i = 0; i < 6; i++) {
+		if (choices[i] != reqMeat[i]) {
+			result[1] = false;
+		}
+	}
 	return result[0] && result[1];
 }
 
-bool compareArray(bool choice1[6], bool choice2[6]) {
-	for (int i = 0; i < 6; i++) {
-		if (choice1[i] != choice2[i]) {
-			return false;
-		}
-	}
-	return true;
-}
+//bool compareArray(bool choice1[6], bool choice2[6]) {
+//	for (int i = 0; i < 6; i++) {
+//		if (choice1[i] != choice2[i]) {
+//			return false;
+//		}
+//	}
+//	return true;
+//}
