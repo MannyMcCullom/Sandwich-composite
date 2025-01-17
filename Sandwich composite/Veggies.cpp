@@ -9,6 +9,35 @@ void Veggies::veggiesChoice(bool choice[6]) {
 	olives = choice[5];
 }
 
+string Veggies::veggiesChoiceV2(int num, int Type)
+{
+	string veggie;
+
+	switch (Type)
+	{
+	case 0:
+		veggie = "tomatoes";
+		break;
+	case 1:
+		veggie = "cucumbers";
+		break;
+	case 2:
+		veggie = "onions";
+		break;
+	case 3:
+		veggie = "peppers";
+		break;
+	case 4:
+		veggie = "celery";
+		break;
+	case 5:
+		veggie = "olives";
+		break;
+	}
+
+	return veggie;
+}
+
 void Veggies::showChoices(bool choice[6]) const {
 	choice[0] = tomatoes;
 	choice[1] = cucumbers;

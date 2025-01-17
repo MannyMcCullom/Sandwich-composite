@@ -16,6 +16,8 @@ public:
 	//determines which veggies will be used
 	//Postcondition: Sets all the bool variables based on array
 
+	string veggiesChoiceV2(int num, int Type);
+
 	void showChoices(bool choice[6]) const;
 	//changes an array according to veggies
 	//post: modifies array to match all private variables
