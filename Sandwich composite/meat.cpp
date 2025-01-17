@@ -9,6 +9,35 @@ void meat::meatChoice(bool choice[6]) {
 	chicken = choice[5];
 }
 
+string meat::meatChoiceV2(int num, int Type)
+{
+	string meat;
+
+	switch (Type)
+	{
+	case 0:
+		meat = "prosciutto";
+		break;
+	case 1:
+		meat = "bologna";
+		break;
+	case 2:
+		meat = "salami";
+		break;
+	case 3:
+		meat = "bacon";
+		break;
+	case 4:
+		meat = "turkey";
+		break;
+	case 5:
+		meat = "chicken";
+		break;
+	}
+
+	return meat;
+}
+
 void meat::showChoices(bool choice[6]) const {
 	choice[0] = prosciutto;
 	choice[1] = bologna;

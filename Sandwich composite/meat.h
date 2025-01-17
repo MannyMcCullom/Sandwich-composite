@@ -1,4 +1,5 @@
-#pragma once
+#include <string>
+using namespace std;
 class meat
 {
 private:
@@ -13,6 +14,8 @@ public:
 	void meatChoice(bool choice[6]);
 	//determines which Meat will be used.
 	//Postcondition: Sets all the bool variables based on array
+
+	string meatChoiceV2(int meatNum, int meatType);
 
 	void showChoices(bool choice[6]) const;
 	//changes an array according to all the meat
