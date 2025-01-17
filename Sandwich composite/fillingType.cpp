@@ -148,3 +148,22 @@ string fillingType::returnMeat() const {
 		return allNames;
 	}
 }
+
+bool fillingType::checkFilling(bool reqVeg[6], bool reqMeat[6]) const {
+	bool choices[6];
+	bool result[2];
+	Veggies.showChoices(choices);
+	result[0] = compareArray(choices, reqVeg);
+	meat.showChoices(choices);
+	result[1] = compareArray(choices, reqMeat);
+	return result[0] && result[1];
+}
+
+bool compareArray(bool choice1[6], bool choice2[6]) {
+	for (int i = 0; i < 6; i++) {
+		if (choice1[i] != choice2[i]) {
+			return false;
+		}
+	}
+	return true;
+}

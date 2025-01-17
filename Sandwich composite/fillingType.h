@@ -51,6 +51,10 @@ public:
 	//sends a string confirming if roasted is true or false
 	//post: returns string "roasted" or "not roasted" on condition of bool roasted
 
+	bool checkFilling(bool reqVeg[6], bool reqMeat[6]) const;
+	//checks if the filling used adheres to the requirement (Meat and Veggies ONLY)
+	//post: compares private values with parameter values, if all values are equal returns true
+
 private:
 	
 	//misc
