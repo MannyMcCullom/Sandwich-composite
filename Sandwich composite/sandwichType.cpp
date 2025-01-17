@@ -57,6 +57,25 @@ void sandwichType::displayOptions(string selections[], int selection, int numOfS
 	}
 }
 
+void sandwichType::displayCurrentRecipe(int currentRecipe)
+{
+	cout << "Recipe: " << pRecipe[currentRecipe][0] << endl;
+
+	if (pNumOfRecipeComp[currentRecipe] > 1)
+	{
+		cout << "Ingredients: " << endl;
+
+		for (int index = pNumOfRecipeComp[currentRecipe] - 1; index > 0; index--)
+		{
+			cout
+				<< '\t'
+				<< pRecipe[currentRecipe][index]
+				<< endl
+				;
+		}
+	}
+}
+
 void sandwichType::setNumberOfEmployees(int num)
 {
 	numOfEmployees = num;
@@ -1129,23 +1148,9 @@ void sandwichType::menuSelectRecipe()
 
 		// User Display
 		longLine();
-		cout << "Recipe: " << pRecipe[selection][0] << endl;
 
-		if (pNumOfRecipeComp[selection] > 1)
-		{
-			cout << "Ingredients: " << endl;
-
-			for (int index = 1; index < pNumOfRecipeComp[selection]; index++)
-			{
-				cout
-					<< '\t'
-					<< pRecipe[selection][index]
-					<< endl
-					;
-			}
-		}
+		displayCurrentRecipe(selection);
 		
-
 		// Title Message
 		longLine();
 		cout << "Select Recipe" << endl;
@@ -1502,7 +1507,7 @@ void sandwichType::menuSelectLayerMeat(string& layerName, bool& layerSelected)
 			layerName = meat.MeatV2(1, selection);
 			layerSelected = true;
 		}
-		//  { "Bread", "Meat", "Cheese", "Veggies" };
+
 		if (layerSelected)
 		{
 			exit = true;
@@ -2055,7 +2060,6 @@ void sandwichType::menuLayers()
 
 	while (!exit)
 	{
-		//cout << numOfLayers << endl;
 		skipLines(50);
 
 		// User Display

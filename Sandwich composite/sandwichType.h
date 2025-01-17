@@ -31,6 +31,8 @@ public:
 
 	void displayOptions(string selections[], int selection, int numOfSelections);
 
+	void displayCurrentRecipe(int currentRecipe);
+
 	void setNumberOfEmployees(int);
 
 	void setNumberOfRecipes(int);
