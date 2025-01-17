@@ -20,13 +20,20 @@ public:
 	//determines which meat types will be used.
 	//Postcondition: Calls functions from meat
 
+	string returnMeat() const;
+
 	void veggies(bool choice[6]);
 	//determines which veggies types will be used.
 	//Postcondition: Calls functions from veggies
 
+	string returnVeggies() const;
+
 	void roast(bool roast);
 	//determines if to use roasted ingredients
 	//Postcondition: sets roasted to true or false
+
+	bool returnRoastBool() const;
+	string returnRoastString() const;
 
 private:
 	

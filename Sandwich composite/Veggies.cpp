@@ -9,6 +9,15 @@ void Veggies::veggiesChoice(bool choice[6]) {
 	olives = choice[5];
 }
 
+void Veggies::showChoices(bool choice[6]) const {
+	choice[0] = tomatoes;
+	choice[1] = cucumbers;
+	choice[2] = onions;
+	choice[3] = peppers;
+	choice[4] = celery;
+	choice[5] = olives;
+}
+
 Veggies::Veggies() {
 	tomatoes = false;
 	cucumbers = false;

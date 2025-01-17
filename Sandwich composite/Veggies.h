@@ -1,3 +1,5 @@
+#include <string>
+using namespace std;
 #pragma once
 class Veggies
 {
@@ -13,6 +15,10 @@ public:
 	void veggiesChoice(bool choice[6]);
 	//determines which veggies will be used
 	//Postcondition: Sets all the bool variables based on array
+
+	void showChoices(bool choice[6]) const;
+	//changes an array according to veggies
+	//post: modifies array to match all private variables
 
 	Veggies();
 	//Default constructor.
