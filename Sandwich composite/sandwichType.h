@@ -5,6 +5,7 @@
 #include "fillingType.h"
 #include "employeeType.h"
 
+#include "stdlib.h"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -81,7 +82,7 @@ public:
 
 	//void menuSelectLayerMeat(string& layerName, bool& layerSelected);
 
-	//void menuSelectLayerCheese(string& layerName, bool& layerSelected);
+	void menuSelectLayerCheese(string& layerName, bool& layerSelected);
 
 	//void menuSelectLayerVeggies(string& layerName, bool& layerSelected);
 
@@ -111,8 +112,6 @@ private:
 	int numOfEmployees;
 	int numOfRecipes;
 	int currentRecipe;
-	//breadType breadSlice[2];
-	//fillingType* pFilling;
 };
 
 #endif

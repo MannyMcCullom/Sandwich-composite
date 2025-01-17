@@ -142,8 +142,15 @@
     <ClInclude Include="employeeType.h" />
     <ClInclude Include="fillingType.h" />
     <ClInclude Include="meat.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="sandwichType.h" />
     <ClInclude Include="Veggies.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\..\Downloads\icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
