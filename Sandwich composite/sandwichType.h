@@ -80,7 +80,7 @@ public:
 
 	//void menuSelectLayerBread(string& layerName, bool& layerSelected);
 
-	//void menuSelectLayerMeat(string& layerName, bool& layerSelected);
+	void menuSelectLayerMeat(string& layerName, bool& layerSelected);
 
 	void menuSelectLayerCheese(string& layerName, bool& layerSelected);
 
