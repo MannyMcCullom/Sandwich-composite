@@ -84,7 +84,7 @@ public:
 
 	void menuSelectLayerCheese(string& layerName, bool& layerSelected);
 
-	//void menuSelectLayerVeggies(string& layerName, bool& layerSelected);
+	void menuSelectLayerVeggies(string& layerName, bool& layerSelected);
 
 	void menuSelectEmployeeOptions();
 

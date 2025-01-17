@@ -1309,11 +1309,11 @@ void sandwichType::menuSelectLayer(string& layerName, bool& layerSelected)
 				menuSelectLayerCheese(layerName, layerSelected);
 				break;
 			case 3:
-				//menuSelectLayerVeggies(layerName, layerSelected);
+				menuSelectLayerVeggies(layerName, layerSelected);
 				break;
 			}
 		}
-		//  { "Bread", "Meat", "Cheese", "Veggies" };
+
 		if (layerSelected)
 		{
 			exit = true;
@@ -1501,7 +1501,7 @@ void sandwichType::menuSelectLayerMeat(string& layerName, bool& layerSelected)
 			switch (selection)
 			{
 			case 0:
-				menuSelectLayerBread(layerName, layerSelected);
+				//menuSelectLayerBread(layerName, layerSelected);
 				break;
 			case 1:
 				menuSelectLayerMeat(layerName, layerSelected);
@@ -1510,7 +1510,7 @@ void sandwichType::menuSelectLayerMeat(string& layerName, bool& layerSelected)
 				menuSelectLayerCheese(layerName, layerSelected);
 				break;
 			case 3:
-				menuSelectLayerVeggies(layerName, layerSelected);
+				//menuSelectLayerVeggies(layerName, layerSelected);
 				break;
 			}
 		}
@@ -1521,7 +1521,7 @@ void sandwichType::menuSelectLayerMeat(string& layerName, bool& layerSelected)
 		}
 	}
 }
-*/
+//*/
 
 //*
 void sandwichType::menuSelectLayerCheese(string& layerName, bool& layerSelected)
@@ -1612,15 +1612,16 @@ void sandwichType::menuSelectLayerCheese(string& layerName, bool& layerSelected)
 }
 //*/
 
-/*
+//*
 void sandwichType::menuSelectLayerVeggies(string& layerName, bool& layerSelected)
 {
+	fillingType veggie;
 	string response;
 	bool exit = false;
 
 	int selection = 0;
-	const int numOfSelections = 4;
-	string selections[numOfSelections] = { "Bread", "Meat", "Cheese", "Veggies" };
+	const int numOfSelections = 6;
+	string selections[numOfSelections] = { "tomatoes", "cucumbers", "onions", "peppers", "celery", "olives"};
 
 	while (!exit)
 	{
@@ -1688,30 +1689,17 @@ void sandwichType::menuSelectLayerVeggies(string& layerName, bool& layerSelected
 
 		else if (toupper(response[0]) == 'E')
 		{
-			switch (selection)
-			{
-			case 0:
-				menuSelectLayerBread(layerName, layerSelected);
-				break;
-			case 1:
-				menuSelectLayerMeat(layerName, layerSelected);
-				break;
-			case 2:
-				menuSelectLayerCheese(layerName, layerSelected);
-				break;
-			case 3:
-				menuSelectLayerVeggies(layerName, layerSelected);
-				break;
-			}
+			layerName = veggie.VeggieV2(1, selection);
+			layerSelected = true;
 		}
-		//  { "Bread", "Meat", "Cheese", "Veggies" };
+
 		if (layerSelected)
 		{
 			exit = true;
 		}
 	}
 }
-*/
+//*/
 
 void sandwichType::menuSelectEmployeeOptions()
 {
