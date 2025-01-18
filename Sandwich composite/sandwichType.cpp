@@ -27,7 +27,7 @@ void sandwichType::skipLines(int num)
 #endif
 }
 
-void sandwichType::checkSelection(int& selection, int numOfSelections)
+void sandwichType::selectionCheck(int& selection, int numOfSelections)
 {
 	if (selection < 0)
 	{
@@ -37,6 +37,26 @@ void sandwichType::checkSelection(int& selection, int numOfSelections)
 	else if (selection >= numOfSelections)
 	{
 		selection = 0;
+	}
+}
+
+void sandwichType::selectionControlVertical(string response, bool &exit, int &selection, int numOfSelections)
+{
+	if (toupper(response[0]) == 'Q')
+	{
+		exit = true;
+	}
+
+	else if (toupper(response[0]) == 'W')
+	{
+		selection--;
+		selectionCheck(selection, numOfSelections);
+	}
+
+	else if (toupper(response[0]) == 'S')
+	{
+		selection++;
+		selectionCheck(selection, numOfSelections);
 	}
 }
 
@@ -926,26 +946,9 @@ void sandwichType::menuMain()
 		getline(cin, response);
 
 		// Options
-		if (toupper(response[0]) == 'Q')
-		{
-			exit = true;
-		}
+		selectionControlVertical(response, exit, selection, numOfSelections);
 
-		else if (toupper(response[0]) == 'W')
-		{
-			// action
-			selection--;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'S')
-		{
-			// action
-			selection++;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'E')
+		if (toupper(response[0]) == 'E')
 		{
 			// action
 			switch (selection)
@@ -1002,24 +1005,9 @@ void sandwichType::menuManagementRecipe()
 		getline(cin, response);
 
 		// Options
-		if (toupper(response[0]) == 'Q')
-		{
-			exit = true;
-		}
+		selectionControlVertical(response, exit, selection, numOfSelections);
 
-		else if (toupper(response[0]) == 'W')
-		{
-			selection--;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'S')
-		{
-			selection++;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'E')
+		if (toupper(response[0]) == 'E')
 		{
 			switch (selection)
 			{
@@ -1072,24 +1060,9 @@ void sandwichType::menuManagementEmployee()
 		getline(cin, response);
 
 		// Options
-		if (toupper(response[0]) == 'Q')
-		{
-			exit = true;
-		}
+		selectionControlVertical(response, exit, selection, numOfSelections);
 
-		else if (toupper(response[0]) == 'W')
-		{
-			selection--;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'S')
-		{
-			selection++;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'E')
+		if (toupper(response[0]) == 'E')
 		{
 			switch (selection)
 			{
@@ -1176,24 +1149,9 @@ void sandwichType::menuSelectRecipe()
 		getline(cin, response);
 
 		// Options
-		if (toupper(response[0]) == 'Q')
-		{
-			exit = true;
-		}
+		selectionControlVertical(response, exit, selection, numOfSelections);
 
-		else if (toupper(response[0]) == 'W')
-		{
-			selection--;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'S')
-		{
-			selection++;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'E')
+		if (toupper(response[0]) == 'E')
 		{
 			menuRecipeOptions(selection);
 			tempMessage += "Recipe Selected";
@@ -1219,7 +1177,7 @@ void sandwichType::menuSelectLayer(string& layerName, bool& layerSelected)
 
 		// User Display
 		longLine();
-		displayCurrentRecipe(selection);
+		displayCurrentRecipe(currentRecipe);
 
 		// Title Message
 		longLine();
@@ -1246,24 +1204,9 @@ void sandwichType::menuSelectLayer(string& layerName, bool& layerSelected)
 		getline(cin, response);
 
 		// Options
-		if (toupper(response[0]) == 'Q')
-		{
-			exit = true;
-		}
+		selectionControlVertical(response, exit, selection, numOfSelections);
 
-		else if (toupper(response[0]) == 'W')
-		{
-			selection--;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'S')
-		{
-			selection++;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'E')
+		if (toupper(response[0]) == 'E')
 		{
 			switch (selection)
 			{
@@ -1358,13 +1301,13 @@ void sandwichType::menuSelectLayerBread(string& layerName, bool& layerSelected)
 		else if (toupper(response[0]) == 'W')
 		{
 			selection--;
-			checkSelection(selection, numOfSelections);
+			selectionCheck(selection, numOfSelections);
 		}
 
 		else if (toupper(response[0]) == 'S')
 		{
 			selection++;
-			checkSelection(selection, numOfSelections);
+			selectionCheck(selection, numOfSelections);
 		}
 
 		else if (toupper(response[0]) == 'E')
@@ -1394,7 +1337,6 @@ void sandwichType::menuSelectLayerBread(string& layerName, bool& layerSelected)
 }
 */
 
-//*
 void sandwichType::menuSelectLayerMeat(string& layerName, bool& layerSelected)
 {
 	fillingType meat;
@@ -1438,24 +1380,9 @@ void sandwichType::menuSelectLayerMeat(string& layerName, bool& layerSelected)
 		getline(cin, response);
 
 		// Options
-		if (toupper(response[0]) == 'Q')
-		{
-			exit = true;
-		}
+		selectionControlVertical(response, exit, selection, numOfSelections);
 
-		else if (toupper(response[0]) == 'W')
-		{
-			selection--;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'S')
-		{
-			selection++;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'E')
+		if (toupper(response[0]) == 'E')
 		{
 			layerName = meat.MeatV2(1, selection);
 			layerSelected = true;
@@ -1467,9 +1394,7 @@ void sandwichType::menuSelectLayerMeat(string& layerName, bool& layerSelected)
 		}
 	}
 }
-//*/
 
-//*
 void sandwichType::menuSelectLayerCheese(string& layerName, bool& layerSelected)
 {
 	fillingType cheese;
@@ -1513,24 +1438,9 @@ void sandwichType::menuSelectLayerCheese(string& layerName, bool& layerSelected)
 		getline(cin, response);
 
 		// Options
-		if (toupper(response[0]) == 'Q')
-		{
-			exit = true;
-		}
+		selectionControlVertical(response, exit, selection, numOfSelections);
 
-		else if (toupper(response[0]) == 'W')
-		{
-			selection--;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'S')
-		{
-			selection++;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'E')
+		if (toupper(response[0]) == 'E')
 		{
 			layerName = cheese.CheeseV2(1, selection);
 			layerSelected = true;
@@ -1542,9 +1452,7 @@ void sandwichType::menuSelectLayerCheese(string& layerName, bool& layerSelected)
 		}
 	}
 }
-//*/
 
-//*
 void sandwichType::menuSelectLayerVeggies(string& layerName, bool& layerSelected)
 {
 	fillingType veggie;
@@ -1588,24 +1496,9 @@ void sandwichType::menuSelectLayerVeggies(string& layerName, bool& layerSelected
 		getline(cin, response);
 
 		// Options
-		if (toupper(response[0]) == 'Q')
-		{
-			exit = true;
-		}
+		selectionControlVertical(response, exit, selection, numOfSelections);
 
-		else if (toupper(response[0]) == 'W')
-		{
-			selection--;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'S')
-		{
-			selection++;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'E')
+		if (toupper(response[0]) == 'E')
 		{
 			layerName = veggie.VeggieV2(1, selection);
 			layerSelected = true;
@@ -1617,7 +1510,6 @@ void sandwichType::menuSelectLayerVeggies(string& layerName, bool& layerSelected
 		}
 	}
 }
-//*/
 
 void sandwichType::menuSelectEmployeeOptions()
 {
@@ -1693,24 +1585,9 @@ void sandwichType::menuSelectEmployeeOptions()
 		getline(cin, response);
 
 		// Options
-		if (toupper(response[0]) == 'Q')
-		{
-			exit = true;
-		}
+		selectionControlVertical(response, exit, selection, numOfSelections);
 
-		else if (toupper(response[0]) == 'W')
-		{
-			selection--;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'S')
-		{
-			selection++;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'E')
+		if (toupper(response[0]) == 'E')
 		{
 			menuEmployeeOptions(selection);
 			tempMessage += "Employee Selected";
@@ -1876,24 +1753,9 @@ void sandwichType::menuCreateRecipe()
 		getline(cin, response);
 
 		// Options
-		if (toupper(response[0]) == 'Q')
-		{
-			exit = true;
-		}
+		selectionControlVertical(response, exit, selection, numOfSelections);
 
-		else if (toupper(response[0]) == 'W')
-		{
-			selection--;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'S')
-		{
-			selection++;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'E')
+		if (toupper(response[0]) == 'E')
 		{
 			switch (selection)
 			{
@@ -1988,24 +1850,9 @@ void sandwichType::menuLayers()
 		getline(cin, response);
 
 		// Options
-		if (toupper(response[0]) == 'Q')
-		{
-			exit = true;
-		}
+		selectionControlVertical(response, exit, selection, numOfSelections);
 
-		else if (toupper(response[0]) == 'W')
-		{
-			selection--;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'S')
-		{
-			selection++;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'E')
+		if (toupper(response[0]) == 'E')
 		{
 			string tempStr;
 
@@ -2073,24 +1920,9 @@ void sandwichType::menuEmployeeHire()
 		getline(cin, response);
 
 		// Options
-		if (toupper(response[0]) == 'Q')
-		{
-			exit = true;
-		}
+		selectionControlVertical(response, exit, selection, numOfSelections);
 
-		else if (toupper(response[0]) == 'W')
-		{
-			selection--;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'S')
-		{
-			selection++;
-			checkSelection(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'E')
+		if (toupper(response[0]) == 'E')
 		{
 			switch (selection)
 			{

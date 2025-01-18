@@ -27,7 +27,9 @@ public:
 
 	void printTempMessage();
 
-	void checkSelection(int& selection, int numOfSelections);
+	void selectionCheck(int& selection, int numOfSelections);
+
+	void selectionControlVertical(string response, bool& exit, int& selection, int numOfSelections);
 
 	void displayOptions(string selections[], int selection, int numOfSelections);
 
