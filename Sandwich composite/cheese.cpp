@@ -60,7 +60,7 @@ string cheese::cheeseChoiceV2(int num, int Type)
 		break;
 	}
 
-	return cheese + " cheese";
+	return cheese;
 }
 
 void cheese::drawCheese() {
