@@ -48,6 +48,9 @@ public:
 
 	void fileRecipeSave();
 
+	// Checks
+	void checkSandwich(int currentEmployee);
+
 	// Actions
 	void actionRecipeCreate();
 
@@ -74,27 +77,31 @@ public:
 
 	void menuMain();
 
+	void gameMakeSandwiches(int currentEmployee);
+
 	void menuManagementRecipe();
 
 	void menuManagementEmployee();
 
 	void menuSelectRecipe();
 
-	void menuSelectLayer(string &layerName, bool &layerSelected);
+	void menuSelectLayer(string &layerName, bool &layerSelected, int currentRecipe);
 
-	//void menuSelectLayerBread(string& layerName, bool& layerSelected);
+	// void menuSelectLayerBread(string& layerName, bool& layerSelected);
 
-	void menuSelectLayerMeat(string& layerName, bool& layerSelected);
+	void menuSelectLayerMeat(string& layerName, bool& layerSelected, int currentRecipe);
 
-	void menuSelectLayerCheese(string& layerName, bool& layerSelected);
+	void menuSelectLayerCheese(string& layerName, bool& layerSelected, int currentRecipe);
 
-	void menuSelectLayerVeggies(string& layerName, bool& layerSelected);
+	void menuSelectLayerVeggies(string& layerName, bool& layerSelected, int currentRecipe);
+
+	void menuSelectEmployeeGame();
 
 	void menuSelectEmployeeOptions();
 
 	void menuCreateRecipe();
 
-	void menuLayers();
+	void menuLayers(int currentRecipe);
 
 	void menuEmployeeHire();
 
@@ -115,7 +122,8 @@ private:
 	bool employeeSelected;
 	int numOfEmployees;
 	int numOfRecipes;
-	int currentRecipe;
+	//int currentRecipe;
+	int currentEmployee;
 };
 
 #endif

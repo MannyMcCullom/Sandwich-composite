@@ -361,9 +361,6 @@ void sandwichType::fileRecipeLoad()
 
 						pRecipe[currentRecipe][index] = tempStr;
 
-						cout << "M: " << index << endl;
-						cout << "L: " << pRecipe[currentRecipe][index] << endl;
-
 						if (index == (pNumOfRecipeComp[currentRecipe]) - 1)
 						{
 							break;
@@ -441,6 +438,53 @@ void sandwichType::fileRecipeSave()
 	outFile.close();
 }
 
+// Checks
+void sandwichType::checkSandwich(int currentEmployee)
+{
+	int recipeNum = -1;
+	bool valid = false;
+
+	for (int index = 0; index < numOfRecipes; index++)
+	{
+		if (pRecipe[numOfRecipes][0] == pRecipe[index][0])
+		{
+			recipeNum = index;
+			break;
+		}
+	}
+
+	if (pNumOfRecipeComp[recipeNum] == pNumOfRecipeComp[numOfRecipes]) //
+	{
+		for (int index = 1; index < pNumOfRecipeComp[recipeNum]; index++)
+		{
+			if (pRecipe[recipeNum][index] == pRecipe[numOfRecipes][index])
+			{
+				valid = true;
+			}
+
+			else
+			{
+				valid = false;
+				break;
+			}
+		}
+
+		if (valid)
+		{
+			pEmployee[currentEmployee].setEmployeeSandwichesMade(pEmployee[currentEmployee].getEmployeeSandwichesMade() + 1);
+			pEmployee[currentEmployee].setEmployeeBalance(pEmployee[currentEmployee].getEmployeeBalance() + 5.00);
+			fileEmployeeSave();
+			tempMessage += "Made the Sandwich Correctly!\n";
+		}
+		
+	}
+
+	else
+	{
+		tempMessage += "Made the Wrong Sandwich!\n";
+	}
+}
+
 // Actions
 void sandwichType::actionRecipeCreate()
 {
@@ -456,7 +500,7 @@ void sandwichType::actionLayerAdd()
 
 	if (pNumOfRecipeComp[numOfRecipes] < 10)
 	{
-		menuSelectLayer(layerName, layerSelected);
+		menuSelectLayer(layerName, layerSelected, numOfRecipes);
 
 		if (layerSelected)
 		{
@@ -502,7 +546,6 @@ void sandwichType::actionLayerRemove()
 	
 	else
 	{
-		// no layers to remove
 		tempMessage += "No Layer to Remove\n";
 	}
 }
@@ -524,7 +567,6 @@ void sandwichType::actionLayerRemoveAll()
 
 	else
 	{
-		// no layers to remove
 		tempMessage += "No Layers to Remove";
 	}
 }
@@ -614,7 +656,7 @@ void sandwichType::actionRecipeErase(int currentRecipe)
 				{
 					if (currentRecipe != oldRecipies)
 					{
-						pNewRecipe[currentRecipe] = pRecipe[oldRecipies];
+						pNewRecipe[newRecipes] = pRecipe[oldRecipies];
 
 						newRecipes++;
 					}
@@ -954,7 +996,7 @@ void sandwichType::menuMain()
 			switch (selection)
 			{
 			case 0:
-				//gameMakeSandwiches();
+				menuSelectEmployeeGame();
 				break;
 			case 1:
 				menuManagementRecipe();
@@ -966,6 +1008,114 @@ void sandwichType::menuMain()
 		}
 	}
 }
+
+void sandwichType::gameMakeSandwiches(int currentEmployee)
+{
+	fileRecipeLoad();
+	//numOfRecipes++;
+
+	string** pNewRecipe;
+	pNewRecipe = new string * [numOfRecipes + 1];
+
+	int* pNewNumOfRecipeComp;
+	pNewNumOfRecipeComp = new int[numOfRecipes + 1];
+
+	for (int index = 0; index < numOfRecipes; index++)
+	{
+		pNewRecipe[index] = pRecipe[index];
+		pNewNumOfRecipeComp[index] = pNumOfRecipeComp[index];
+	}
+
+	pNewNumOfRecipeComp[numOfRecipes] = 1;
+	pNewRecipe[numOfRecipes] = new string[pNewNumOfRecipeComp[numOfRecipes]];
+
+	pNewRecipe[numOfRecipes][0] = "";
+
+	pRecipe = pNewRecipe;
+	pNumOfRecipeComp = pNewNumOfRecipeComp;
+
+	string response;
+	bool exit = false;
+	bool sandwichComplete;
+
+	int selection = 0;
+	const int numOfSelections = 4;
+	string selections[numOfSelections] = { "Add Layer", "Remove Layer", "Remove All Layers", "Complete Sandwich" };
+
+	while (!exit)
+	{
+		sandwichComplete = false;
+
+		pRecipe[numOfRecipes] = new string[pNewNumOfRecipeComp[numOfRecipes]];
+		pNumOfRecipeComp[numOfRecipes] = 1;
+		pRecipe[numOfRecipes][0] = pRecipe[rand() % numOfRecipes][0];
+
+		while (!sandwichComplete && !exit)
+		{
+			skipLines(50);
+
+			// User Stats
+			longLine();
+			pEmployee[currentEmployee].print();
+
+			// Title Message
+			longLine();
+			cout << "Sandwich Making" << endl;
+
+			// Temp Message
+			printTempMessage();
+
+			// Controls
+			longLine();
+			cout
+				<< "e to make selection"
+				<< endl
+				<< "w or s to navigate"
+				<< endl
+				<< "q to exit"
+				<< endl;
+
+			// Display Options
+			displayOptions(selections, selection, numOfSelections);
+
+			longLine();
+			displayCurrentRecipe(numOfRecipes);
+
+			// Response
+			longLine();
+			getline(cin, response);
+
+			// Options
+			selectionControlVertical(response, exit, selection, numOfSelections);
+
+			if (toupper(response[0]) == 'E')
+			{
+				string tempStr;
+
+				switch (selection)
+				{
+				case 0:
+					actionLayerAdd();
+					break;
+				case 1:
+					actionLayerRemove();
+					break;
+				case 2:
+					actionLayerRemoveAll();
+					break;
+				case 3:
+					checkSandwich(currentEmployee);
+					sandwichComplete = true;
+					break;
+				}
+			}
+		}
+	}
+
+	fileRecipeLoad();
+}
+
+
 
 void sandwichType::menuManagementRecipe()
 {
@@ -1160,7 +1310,7 @@ void sandwichType::menuSelectRecipe()
 	}
 }
 
-void sandwichType::menuSelectLayer(string& layerName, bool& layerSelected)
+void sandwichType::menuSelectLayer(string& layerName, bool& layerSelected, int currentRecipe)
 {
 	breadType bread;
 
@@ -1216,13 +1366,13 @@ void sandwichType::menuSelectLayer(string& layerName, bool& layerSelected)
 				layerSelected = true;
 				break;
 			case 1:
-				menuSelectLayerMeat(layerName, layerSelected);
+				menuSelectLayerMeat(layerName, layerSelected, currentRecipe);
 				break;
 			case 2:
-				menuSelectLayerCheese(layerName, layerSelected);
+				menuSelectLayerCheese(layerName, layerSelected, currentRecipe);
 				break;
 			case 3:
-				menuSelectLayerVeggies(layerName, layerSelected);
+				menuSelectLayerVeggies(layerName, layerSelected, currentRecipe);
 				break;
 			}
 		}
@@ -1337,7 +1487,7 @@ void sandwichType::menuSelectLayerBread(string& layerName, bool& layerSelected)
 }
 */
 
-void sandwichType::menuSelectLayerMeat(string& layerName, bool& layerSelected)
+void sandwichType::menuSelectLayerMeat(string& layerName, bool& layerSelected, int currentRecipe)
 {
 	fillingType meat;
 	string response;
@@ -1395,7 +1545,7 @@ void sandwichType::menuSelectLayerMeat(string& layerName, bool& layerSelected)
 	}
 }
 
-void sandwichType::menuSelectLayerCheese(string& layerName, bool& layerSelected)
+void sandwichType::menuSelectLayerCheese(string& layerName, bool& layerSelected, int currentRecipe)
 {
 	fillingType cheese;
 	string response;
@@ -1453,7 +1603,7 @@ void sandwichType::menuSelectLayerCheese(string& layerName, bool& layerSelected)
 	}
 }
 
-void sandwichType::menuSelectLayerVeggies(string& layerName, bool& layerSelected)
+void sandwichType::menuSelectLayerVeggies(string& layerName, bool& layerSelected, int currentRecipe)
 {
 	fillingType veggie;
 	string response;
@@ -1506,6 +1656,91 @@ void sandwichType::menuSelectLayerVeggies(string& layerName, bool& layerSelected
 
 		if (layerSelected)
 		{
+			exit = true;
+		}
+	}
+}
+
+void sandwichType::menuSelectEmployeeGame()
+{
+	string response;
+	bool exit = false;
+
+	fileEmployeeLoad();
+
+	int selection = 0;
+	int numOfSelections = numOfEmployees;
+	string* selections;
+	selections = new string[numOfSelections];
+
+	while (!exit)
+	{
+		if (numOfEmployees < 1)
+		{
+			tempMessage += "No Employees";
+			break;
+		}
+
+		skipLines(50);
+
+		// User Display
+		longLine();
+		pEmployee[selection].print();
+
+		// Title Message
+		longLine();
+		cout
+			<< "Select Employee"
+			<< endl;
+
+		// Temp Message
+		printTempMessage();
+
+		// Controls
+		longLine();
+		cout
+			<< "e to select employee"
+			<< endl
+			<< "w or s to navigate"
+			<< endl
+			<< "q to exit"
+			<< endl;
+
+		// Options
+		longLine();
+
+		for (int index = 0; index < numOfSelections; index++)
+		{
+			if (index == selection)
+			{
+				cout << '[';
+
+				cout << pEmployee[index].getNameFull();
+
+				cout << ']' << endl;
+			}
+
+			else
+			{
+				cout << ' ';
+
+				cout << pEmployee[index].getNameFull();
+
+				cout << ' ' << endl;
+			}
+		}
+
+		// Response
+		longLine();
+		getline(cin, response);
+
+		// Options
+		selectionControlVertical(response, exit, selection, numOfSelections);
+
+		if (toupper(response[0]) == 'E')
+		{
+			tempMessage += "Employee Selected\n";
+			gameMakeSandwiches(selection);
 			exit = true;
 		}
 	}
@@ -1689,14 +1924,14 @@ void sandwichType::menuEmployeeOptions(int currentEmployee)
 
 void sandwichType::menuCreateRecipe()
 {
-	currentRecipe = numOfRecipes;
+	//currentRecipe = numOfRecipes;
 
 	string response;
 	bool exit = false;
 	bool newRecipe = false;
 
 	string** pNewRecipe;
-	pNewRecipe = new string*[numOfRecipes + 1];
+	pNewRecipe = new string * [numOfRecipes + 1];
 
 	int* pNewNumOfRecipeComp;
 	pNewNumOfRecipeComp = new int[numOfRecipes + 1];
@@ -1725,7 +1960,7 @@ void sandwichType::menuCreateRecipe()
 
 		// User Display
 		longLine();
-		displayCurrentRecipe(currentRecipe);
+		displayCurrentRecipe(numOfRecipes);
 		
 
 		// Title Message
@@ -1763,7 +1998,7 @@ void sandwichType::menuCreateRecipe()
 				actionChangeNameRecipe();
 				break;
 			case 1:
-				menuLayers();
+				menuLayers(numOfRecipes);
 				break;
 			case 2:
 				if (pRecipe[numOfRecipes][0].length() > 4 && pNewNumOfRecipeComp[numOfRecipes] > 1)
@@ -1808,7 +2043,7 @@ void sandwichType::menuCreateRecipe()
 
 }
 
-void sandwichType::menuLayers()
+void sandwichType::menuLayers(int currentRecipe)
 {
 	string response;
 	bool exit = false;
