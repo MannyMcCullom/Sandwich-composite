@@ -124,8 +124,6 @@ private:
 	bool employeeSelected;
 	int numOfEmployees;
 	int numOfRecipes;
-	//int currentRecipe;
-	int currentEmployee;
 };
 
 #endif

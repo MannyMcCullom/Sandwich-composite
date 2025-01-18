@@ -20,9 +20,7 @@ void sandwichType::skipLines(int num)
 
 #else
 	for (int index = 0; index < num; index++)
-	{
 		cout << endl;
-	}
 
 #endif
 }
@@ -30,34 +28,24 @@ void sandwichType::skipLines(int num)
 void sandwichType::selectionCheck(int& selection, int numOfSelections)
 {
 	if (selection < 0)
-	{
 		selection = numOfSelections - 1;
-	}
 
 	else if (selection >= numOfSelections)
-	{
 		selection = 0;
-	}
 }
 
 void sandwichType::selectionControlVertical(string response, bool &exit, int &selection, int numOfSelections)
 {
 	if (toupper(response[0]) == 'Q')
-	{
 		exit = true;
-	}
 
 	else if (toupper(response[0]) == 'W')
-	{
 		selection--;
-		selectionCheck(selection, numOfSelections);
-	}
 
 	else if (toupper(response[0]) == 'S')
-	{
 		selection++;
-		selectionCheck(selection, numOfSelections);
-	}
+
+	selectionCheck(selection, numOfSelections);
 }
 
 void sandwichType::displayOptions(string selections[], int selection, int numOfSelections)
@@ -67,22 +55,10 @@ void sandwichType::displayOptions(string selections[], int selection, int numOfS
 	for (int index = 0; index < numOfSelections; index++)
 	{
 		if (index == selection)
-		{
-			cout
-				<< '['
-				<< selections[index]
-				<< ']'
-				<< endl;
-		}
+			cout << '[' << selections[index] << ']' << endl;
 
 		else
-		{
-			cout
-				<< ' '
-				<< selections[index]
-				<< ' '
-				<< endl;
-		}
+			cout << ' ' << selections[index] << ' ' << endl;
 	}
 }
 
@@ -95,13 +71,7 @@ void sandwichType::displayCurrentRecipe(int currentRecipe)
 		cout << "Ingredients: " << endl;
 
 		for (int index = pNumOfRecipeComp[currentRecipe] - 1; index > 0; index--)
-		{
-			cout
-				<< '\t'
-				<< pRecipe[currentRecipe][index]
-				<< endl
-				;
-		}
+			cout << '\t' << pRecipe[currentRecipe][index] << endl;
 	}
 }
 
@@ -110,14 +80,10 @@ void sandwichType::setNumberOfEmployees(int num)
 	numOfEmployees = num;
 
 	if (numOfEmployees < 0)
-	{
 		numOfEmployees = 0;
-	}
 
 	else if (numOfEmployees > MAX_NO_EMPLOYEES)
-	{
 		numOfEmployees = MAX_NO_EMPLOYEES;
-	}
 }
 
 void sandwichType::setNumberOfRecipes(int num)
@@ -125,14 +91,10 @@ void sandwichType::setNumberOfRecipes(int num)
 	numOfRecipes = num;
 
 	if (numOfRecipes < 0)
-	{
 		numOfRecipes = 0;
-	}
 
 	else if (numOfRecipes > MAX_NO_RECIPES)
-	{
 		numOfRecipes = MAX_NO_RECIPES;
-	}
 }
 
 // File Management
@@ -161,17 +123,11 @@ void sandwichType::fileEmployeeLoad()
 			if (line2 != line1)
 			{
 				for (int index = 0; index < line1.length(); index++)
-				{
 					if (line1[index] == '"')
-					{
 						numOfQuotes++;
-					}
-				}
 
 				if (numOfQuotes == 10)
-				{
 					numOfEmployeesLoc++;
-				}
 			}
 
 			line2 = line1;
@@ -196,12 +152,8 @@ void sandwichType::fileEmployeeLoad()
 			if (line2 != line1)
 			{
 				for (int index = 0; index < line1.length(); index++)
-				{
 					if (line1[index] == '"')
-					{
 						numOfQuotes++;
-					}
-				}
 
 				cout << numOfEmployeesLoc << endl;
 
@@ -235,13 +187,10 @@ void sandwichType::fileEmployeeLoad()
 						}
 
 						if (index == 4)
-						{
 							break;
-						}
+
 						else
-						{
 							tempLine = tempLine.substr(q2 + 2);
-						}
 					}
 
 					currentEmployee++;
@@ -255,12 +204,8 @@ void sandwichType::fileEmployeeLoad()
 				int tempEmployeeNum = pEmployee[0].getEmployeeNumberHigh();
 
 				for (int index = 0; index < numOfEmployees; index++)
-				{
 					if (tempEmployeeNum <= pEmployee[index].getEmployeeNumber())
-					{
 						tempEmployeeNum = pEmployee[index].getEmployeeNumber() + 1;
-					}
-				}
 
 				pEmployee[0].setEmployeeNumberHigh(tempEmployeeNum);
 
@@ -270,9 +215,7 @@ void sandwichType::fileEmployeeLoad()
 	}
 
 	else
-	{
 		cout << "couldn't open file" << endl;
-	}
 }
 
 void sandwichType::fileRecipeLoad()
@@ -300,17 +243,11 @@ void sandwichType::fileRecipeLoad()
 			if (line2 != line1)
 			{
 				for (int index = 0; index < line1.length(); index++)
-				{
 					if (line1[index] == '"')
-					{
 						numOfQuotes++;
-					}
-				}
 
 				if (numOfQuotes >= 4 && numOfQuotes % 2 == 0)
-				{
 					numOfRecipesLoc++;
-				}
 			}
 
 			line2 = line1;
@@ -337,12 +274,8 @@ void sandwichType::fileRecipeLoad()
 			if (line2 != line1)
 			{
 				for (int index = 0; index < line1.length(); index++)
-				{
 					if (line1[index] == '"')
-					{
 						numOfQuotes++;
-					}
-				}
 
 				pNumOfRecipeComp[currentRecipe] = numOfQuotes / 2;
 
@@ -362,14 +295,10 @@ void sandwichType::fileRecipeLoad()
 						pRecipe[currentRecipe][index] = tempStr;
 
 						if (index == (pNumOfRecipeComp[currentRecipe]) - 1)
-						{
 							break;
-						}
 
 						else
-						{
 							tempLine = tempLine.substr(q2 + 2);
-						}
 					}
 
 					currentRecipe++;
@@ -424,13 +353,11 @@ void sandwichType::fileRecipeSave()
 	for (int index = 0; index < numOfRecipes; index++)
 	{
 		for (int index2 = 0; index2 < pNumOfRecipeComp[index]; index2++)
-		{
 			outFile
 				<< '"'
 				<< pRecipe[index][index2]
 				<< '"' << " "
 				;
-		}
 
 		outFile << endl;
 	}
@@ -458,9 +385,7 @@ void sandwichType::checkSandwich(int currentEmployee)
 		for (int index = 1; index < pNumOfRecipeComp[recipeNum]; index++)
 		{
 			if (pRecipe[recipeNum][index] == pRecipe[numOfRecipes][index])
-			{
 				valid = true;
-			}
 
 			else
 			{
@@ -476,7 +401,6 @@ void sandwichType::checkSandwich(int currentEmployee)
 			fileEmployeeSave();
 			tempMessage += "Made the Sandwich Correctly!\n";
 		}
-		
 	}
 
 	else
@@ -510,9 +434,7 @@ void sandwichType::actionLayerAdd()
 			newRecipe = new string[pNumOfRecipeComp[numOfRecipes]];
 
 			for (int index = 0; index < pNumOfRecipeComp[numOfRecipes] - 1; index++)
-			{
 				newRecipe[index] = pRecipe[numOfRecipes][index];
-			}
 
 			newRecipe[pNumOfRecipeComp[numOfRecipes] - 1] = layerName;
 
@@ -521,9 +443,7 @@ void sandwichType::actionLayerAdd()
 	}
 	
 	else
-	{
 		tempMessage += "At Max Layer\n";
-	}
 }
 
 void sandwichType::actionLayerRemove()
@@ -537,17 +457,13 @@ void sandwichType::actionLayerRemove()
 		newRecipe = new string[pNumOfRecipeComp[numOfRecipes]];
 
 		for (int index = 0; index < pNumOfRecipeComp[numOfRecipes]; index++)
-		{
 			newRecipe[index] = pRecipe[numOfRecipes][index];
-		}
 
 		pRecipe[numOfRecipes] = newRecipe;
 	}
 	
 	else
-	{
 		tempMessage += "No Layer to Remove\n";
-	}
 }
 
 void sandwichType::actionLayerRemoveAll()
@@ -566,9 +482,7 @@ void sandwichType::actionLayerRemoveAll()
 	}
 
 	else
-	{
 		tempMessage += "No Layers to Remove";
-	}
 }
 
 void sandwichType::actionEmployeeHire(employeeType& newEmployee)
@@ -584,9 +498,7 @@ void sandwichType::actionEmployeeHire(employeeType& newEmployee)
 	pNewEmployee = new employeeType[numOfEmployees + 1];
 
 	for (int index = 0; index < numOfEmployees; index++)
-	{
 		pNewEmployee[index] = pEmployee[index];
-	}
 
 	pNewEmployee[numOfEmployees] = newEmployee;
 
@@ -631,9 +543,7 @@ void sandwichType::actionRecipeErase(int currentRecipe)
 
 		// Options
 		if (toupper(response[0]) == 'Q')
-		{
 			exit = true;
-		}
 
 		else if (toupper(response[0]) == 'Y')
 		{
@@ -711,9 +621,7 @@ void sandwichType::actionEmployeeFire(int currentEmployee)
 
 		// Options
 		if (toupper(response[0]) == 'Q')
-		{
 			exit = true;
-		}
 
 		else if (toupper(response[0]) == 'Y')
 		{
@@ -781,9 +689,7 @@ void sandwichType::actionChangeNameRecipe()
 
 		// Options
 		if (toupper(response[0]) == 'Q')
-		{
 			exit = true;
-		}
 
 		else if (response.length() > 1)
 		{
@@ -792,9 +698,7 @@ void sandwichType::actionChangeNameRecipe()
 		}
 
 		else
-		{
 			tempMessage += "Invalid Input\n";
-		}
 	}
 }
 
@@ -836,9 +740,7 @@ void sandwichType::actionChangeNameFirst(employeeType& newEmployee)
 
 		// Options
 		if (toupper(response[0]) == 'Q')
-		{
 			exit = true;
-		}
 
 		else if (response.length() > 1)
 		{
@@ -847,9 +749,7 @@ void sandwichType::actionChangeNameFirst(employeeType& newEmployee)
 		}
 
 		else
-		{
 			tempMessage += "Invalid Input\n";
-		}
 	}
 }
 
@@ -891,9 +791,7 @@ void sandwichType::actionChangeNameLast(employeeType& newEmployee)
 
 		// Options
 		if (toupper(response[0]) == 'Q')
-		{
 			exit = true;
-		}
 
 		else if (response.length() > 1)
 		{
@@ -902,15 +800,17 @@ void sandwichType::actionChangeNameLast(employeeType& newEmployee)
 		}
 
 		else
-		{
 			tempMessage += "Invalid Input\n";
-		}
 	}
 }
 
 // Menus
 void sandwichType::menuStart()
 {
+	pEmployee = nullptr;
+	pRecipe = nullptr;
+	pNumOfRecipeComp = nullptr;
+
 	string response;
 	bool exit = false;
 
@@ -939,14 +839,10 @@ void sandwichType::menuStart()
 
 		// Options
 		if (toupper(response[0]) == 'Q')
-		{
 			exit = true;
-		}
 
 		else if (toupper(response[0]) == 'E')
-		{
 			menuMain();
-		}
 	}
 }
 
@@ -1012,7 +908,6 @@ void sandwichType::menuMain()
 void sandwichType::gameMakeSandwiches(int currentEmployee)
 {
 	fileRecipeLoad();
-	//numOfRecipes++;
 
 	string** pNewRecipe;
 	pNewRecipe = new string * [numOfRecipes + 1];
@@ -1044,6 +939,7 @@ void sandwichType::gameMakeSandwiches(int currentEmployee)
 
 	while (!exit)
 	{
+		selection = 0;
 		sandwichComplete = false;
 
 		pRecipe[numOfRecipes] = new string[pNewNumOfRecipeComp[numOfRecipes]];
@@ -1114,8 +1010,6 @@ void sandwichType::gameMakeSandwiches(int currentEmployee)
 
 	fileRecipeLoad();
 }
-
-
 
 void sandwichType::menuManagementRecipe()
 {
@@ -1276,22 +1170,10 @@ void sandwichType::menuSelectRecipe()
 		for (int index = 0; index < numOfSelections; index++)
 		{
 			if (index == selection)
-			{
-				cout << '[';
-
-				cout << pRecipe[index][0];
-
-				cout << ']' << endl;
-			}
+				cout << '[' << pRecipe[index][0] << ']' << endl;
 
 			else
-			{
-				cout << ' ';
-
-				cout << pRecipe[index][0];
-
-				cout << ' ' << endl;
-			}
+				cout << ' ' << pRecipe[index][0] << ' ' << endl;
 		}
 
 		// Response
@@ -1379,9 +1261,7 @@ void sandwichType::menuSelectLayer(string& layerName, bool& layerSelected, int c
 		}
 
 		if (layerSelected)
-		{
 			exit = true;
-		}
 	}
 }
 
@@ -1437,9 +1317,7 @@ void sandwichType::menuSelectLayerBread(string& layerName, bool& layerSelected, 
 		}
 
 		if (layerSelected)
-		{
 			exit = true;
-		}
 	}
 }
 
@@ -1495,9 +1373,7 @@ void sandwichType::menuSelectLayerMeat(string& layerName, bool& layerSelected, i
 		}
 
 		if (layerSelected)
-		{
 			exit = true;
-		}
 	}
 }
 
@@ -1553,9 +1429,7 @@ void sandwichType::menuSelectLayerCheese(string& layerName, bool& layerSelected,
 		}
 
 		if (layerSelected)
-		{
 			exit = true;
-		}
 	}
 }
 
@@ -1611,9 +1485,7 @@ void sandwichType::menuSelectLayerVeggies(string& layerName, bool& layerSelected
 		}
 
 		if (layerSelected)
-		{
 			exit = true;
-		}
 	}
 }
 
@@ -1669,9 +1541,7 @@ void sandwichType::menuSelectLayerSpread(string& layerName, bool& layerSelected,
 		}
 
 		if (layerSelected)
-		{
 			exit = true;
-		}
 	}
 }
 
@@ -1726,22 +1596,10 @@ void sandwichType::menuSelectEmployeeGame()
 		for (int index = 0; index < numOfSelections; index++)
 		{
 			if (index == selection)
-			{
-				cout << '[';
-
-				cout << pEmployee[index].getNameFull();
-
-				cout << ']' << endl;
-			}
+				cout << '[' << pEmployee[index].getNameFull() << ']' << endl;
 
 			else
-			{
-				cout << ' ';
-
-				cout << pEmployee[index].getNameFull();
-
-				cout << ' ' << endl;
-			}
+				cout << ' ' << pEmployee[index].getNameFull() << ' ' << endl;
 		}
 
 		// Response
@@ -1811,22 +1669,10 @@ void sandwichType::menuSelectEmployeeOptions()
 		for (int index = 0; index < numOfSelections; index++)
 		{
 			if (index == selection)
-			{
-				cout << '[';
-
-				cout << pEmployee[index].getNameFull();
-
-				cout << ']' << endl;
-			}
+				cout << '[' << pEmployee[index].getNameFull() << ']' << endl;
 
 			else
-			{
-				cout << ' ';
-
-				cout << pEmployee[index].getNameFull();
-
-				cout << ' ' << endl;
-			}
+				cout << ' ' << pEmployee[index].getNameFull() << ' ' << endl;
 		}
 
 		// Response
@@ -1879,9 +1725,7 @@ void sandwichType::menuRecipeOptions(int currentRecipe)
 
 		// Options
 		if (toupper(response[0]) == 'Q')
-		{
 			exit = true;
-		}
 
 		else if (toupper(response[0]) == 'E')
 		{
@@ -1924,9 +1768,7 @@ void sandwichType::menuEmployeeOptions(int currentEmployee)
 
 		// Options
 		if (toupper(response[0]) == 'Q')
-		{
 			exit = true;
-		}
 
 		else if (toupper(response[0]) == 'E')
 		{
@@ -1938,8 +1780,6 @@ void sandwichType::menuEmployeeOptions(int currentEmployee)
 
 void sandwichType::menuCreateRecipe()
 {
-	//currentRecipe = numOfRecipes;
-
 	string response;
 	bool exit = false;
 	bool newRecipe = false;
@@ -2197,7 +2037,9 @@ sandwichType::sandwichType()
 
 sandwichType::~sandwichType()
 {
+	/*
 	delete[] pEmployee;
 	delete[] pRecipe;
 	delete[] pNumOfRecipeComp;
+	*/
 }
