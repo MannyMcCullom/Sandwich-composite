@@ -952,7 +952,7 @@ void sandwichType::gameMakeSandwiches(int currentEmployee)
 
 			// User Stats
 			longLine();
-			pEmployee[currentEmployee].print();
+			displayCurrentRecipe(numOfRecipes);
 
 			// Title Message
 			longLine();
@@ -974,8 +974,10 @@ void sandwichType::gameMakeSandwiches(int currentEmployee)
 			// Display Options
 			displayOptions(selections, selection, numOfSelections);
 
+			/*
 			longLine();
 			displayCurrentRecipe(numOfRecipes);
+			*/
 
 			// Response
 			longLine();
@@ -1611,9 +1613,17 @@ void sandwichType::menuSelectEmployeeGame()
 
 		if (toupper(response[0]) == 'E')
 		{
-			tempMessage += "Employee Selected\n";
-			gameMakeSandwiches(selection);
-			exit = true;
+			fileRecipeLoad();
+
+			if (numOfRecipes < 1)
+				tempMessage += "No Recipes\n";
+
+			else
+			{
+				tempMessage += "Employee Selected\n";
+				gameMakeSandwiches(selection);
+				exit = true;
+			}
 		}
 	}
 }
