@@ -42,6 +42,16 @@ string fillingType::MeatV2(int veggieNum, int veggieType)
 	return meat.meatChoiceV2(veggieNum, veggieType);
 }
 
+string fillingType::spreadV2(int spreadType)
+{
+	return spread.spreadChoice(spreadType);
+}
+
+string fillingType::breadV2(int breadType)
+{
+	return bread.breadChoice(breadType);
+}
+
 void fillingType::veggies(bool choice[6])
 {
 	Veggies.veggiesChoice(choice);

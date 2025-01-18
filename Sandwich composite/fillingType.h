@@ -1,6 +1,9 @@
-#include "cheese.h"
 #ifndef H_fillingType
 #define H_fillingType
+
+#include "cheese.h"
+#include "spreadType.h"
+#include "breadType.h"
 
 using namespace std;
 
@@ -19,9 +22,13 @@ public:
 
 	string CheeseV2(int cheeseNum, int cheeseType);
 	
-	string VeggieV2(int cheeseNum, int cheeseType);
+	string VeggieV2(int veggieNum, int veggieType);
 
-	string MeatV2(int cheeseNum, int cheeseType);
+	string MeatV2(int meatNum, int meatType);
+
+	string spreadV2(int spreadType);
+
+	string breadV2(int breadType);
 
 	void Meat(bool choice[6]);
 	//determines which meat types will be used.
@@ -68,6 +75,9 @@ private:
 	Veggies Veggies;
 	//roasted or not
 	bool roasted;
+
+	spreadType spread;
+	breadType bread;
 
 };
 
