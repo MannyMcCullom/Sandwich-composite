@@ -21,6 +21,8 @@ public:
 	//pre: Function that returns the value of bread
 	//post: return bread;
 
+	string breadChoice(int spreadType);
+
 	void print() const;
 	//pre: Function that outputs the value of bread to the screen
 	//post: bread = " "
