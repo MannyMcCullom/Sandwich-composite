@@ -39,6 +39,9 @@
     <ClCompile Include="Veggies.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="spreadType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sandwichType.h">
@@ -63,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="spreadType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

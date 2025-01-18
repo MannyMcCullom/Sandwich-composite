@@ -1318,8 +1318,8 @@ void sandwichType::menuSelectLayer(string& layerName, bool& layerSelected, int c
 	bool exit = false;
 
 	int selection = 0;
-	const int numOfSelections = 4;
-	string selections[numOfSelections] = { "Bread", "Meat", "Cheese", "Veggies" };
+	const int numOfSelections = 5;
+	string selections[numOfSelections] = { "Bread", "Meat", "Cheese", "Veggies", "Spread"};
 
 	while (!exit)
 	{
@@ -1361,9 +1361,7 @@ void sandwichType::menuSelectLayer(string& layerName, bool& layerSelected, int c
 			switch (selection)
 			{
 			case 0:
-				// menuSelectLayerBread(layerName, layerSelected);
-				layerName = bread.getBread() + " bread";
-				layerSelected = true;
+				menuSelectLayerBread(layerName, layerSelected, currentRecipe);
 				break;
 			case 1:
 				menuSelectLayerMeat(layerName, layerSelected, currentRecipe);
@@ -1373,6 +1371,9 @@ void sandwichType::menuSelectLayer(string& layerName, bool& layerSelected, int c
 				break;
 			case 3:
 				menuSelectLayerVeggies(layerName, layerSelected, currentRecipe);
+				break;
+			case 4:
+				menuSelectLayerSpread(layerName, layerSelected, currentRecipe);
 				break;
 			}
 		}
@@ -1384,17 +1385,15 @@ void sandwichType::menuSelectLayer(string& layerName, bool& layerSelected, int c
 	}
 }
 
-/*
-void sandwichType::menuSelectLayerBread(string& layerName, bool& layerSelected)
+void sandwichType::menuSelectLayerBread(string& layerName, bool& layerSelected, int currentRecipe)
 {
-	breadType bread;
-
+	fillingType bread;
 	string response;
 	bool exit = false;
 
 	int selection = 0;
-	const int numOfSelections = 4;
-	string selections[numOfSelections] = { "Bread", "Meat", "Cheese", "Veggies" };
+	const int numOfSelections = 6;
+	string selections[numOfSelections] = { "white", "wheat", "honey wheat", "potato", "french", "spinach" };
 
 	while (!exit)
 	{
@@ -1402,21 +1401,7 @@ void sandwichType::menuSelectLayerBread(string& layerName, bool& layerSelected)
 
 		// User Display
 		longLine();
-		cout << "Recipe: " << pRecipe[currentRecipe][0] << endl;
-
-		if (pNumOfRecipeComp[currentRecipe] > 1)
-		{
-			cout << "Ingredients: " << endl;
-
-			for (int index = 1; index < pNumOfRecipeComp[currentRecipe]; index++)
-			{
-				cout
-					<< '\t'
-					<< pRecipe[currentRecipe][index]
-					<< endl
-					;
-			}
-		}
+		displayCurrentRecipe(currentRecipe);
 
 		// Title Message
 		longLine();
@@ -1443,49 +1428,20 @@ void sandwichType::menuSelectLayerBread(string& layerName, bool& layerSelected)
 		getline(cin, response);
 
 		// Options
-		if (toupper(response[0]) == 'Q')
+		selectionControlVertical(response, exit, selection, numOfSelections);
+
+		if (toupper(response[0]) == 'E')
 		{
-			exit = true;
+			layerName = bread.breadV2(selection) + " bread";
+			layerSelected = true;
 		}
 
-		else if (toupper(response[0]) == 'W')
-		{
-			selection--;
-			selectionCheck(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'S')
-		{
-			selection++;
-			selectionCheck(selection, numOfSelections);
-		}
-
-		else if (toupper(response[0]) == 'E')
-		{
-			switch (selection)
-			{
-			case 0:
-				menuSelectLayerBread(layerName, layerSelected);
-				break;
-			case 1:
-				menuSelectLayerMeat(layerName, layerSelected);
-				break;
-			case 2:
-				menuSelectLayerCheese(layerName, layerSelected);
-				break;
-			case 3:
-				menuSelectLayerVeggies(layerName, layerSelected);
-				break;
-			}
-		}
-		//  { "Bread", "Meat", "Cheese", "Veggies" };
 		if (layerSelected)
 		{
 			exit = true;
 		}
 	}
 }
-*/
 
 void sandwichType::menuSelectLayerMeat(string& layerName, bool& layerSelected, int currentRecipe)
 {
@@ -1592,7 +1548,7 @@ void sandwichType::menuSelectLayerCheese(string& layerName, bool& layerSelected,
 
 		if (toupper(response[0]) == 'E')
 		{
-			layerName = cheese.CheeseV2(1, selection);
+			layerName = cheese.CheeseV2(1, selection) + " cheese";
 			layerSelected = true;
 		}
 
@@ -1651,6 +1607,64 @@ void sandwichType::menuSelectLayerVeggies(string& layerName, bool& layerSelected
 		if (toupper(response[0]) == 'E')
 		{
 			layerName = veggie.VeggieV2(1, selection);
+			layerSelected = true;
+		}
+
+		if (layerSelected)
+		{
+			exit = true;
+		}
+	}
+}
+
+void sandwichType::menuSelectLayerSpread(string& layerName, bool& layerSelected, int currentRecipe)
+{
+	fillingType spread;
+	string response;
+	bool exit = false;
+
+	int selection = 0;
+	const int numOfSelections = 6;
+	string selections[numOfSelections] = { "peanut butter", "jelly", "mayo", "relish", "ketchup", "mustard" };
+
+	while (!exit)
+	{
+		skipLines(50);
+
+		// User Display
+		longLine();
+		displayCurrentRecipe(currentRecipe);
+
+		// Title Message
+		longLine();
+		cout << "Ingredients" << endl;
+
+		// Temp Message
+		printTempMessage();
+
+		// Controls
+		longLine();
+		cout
+			<< "e to make selection"
+			<< endl
+			<< "w or s to navigate"
+			<< endl
+			<< "q to exit"
+			<< endl;
+
+		// Display Options
+		displayOptions(selections, selection, numOfSelections);
+
+		// Response
+		longLine();
+		getline(cin, response);
+
+		// Options
+		selectionControlVertical(response, exit, selection, numOfSelections);
+
+		if (toupper(response[0]) == 'E')
+		{
+			layerName = spread.spreadV2(selection);
 			layerSelected = true;
 		}
 

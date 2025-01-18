@@ -87,13 +87,15 @@ public:
 
 	void menuSelectLayer(string &layerName, bool &layerSelected, int currentRecipe);
 
-	// void menuSelectLayerBread(string& layerName, bool& layerSelected);
+	void menuSelectLayerBread(string& layerName, bool& layerSelected, int currentRecipe);
 
 	void menuSelectLayerMeat(string& layerName, bool& layerSelected, int currentRecipe);
 
 	void menuSelectLayerCheese(string& layerName, bool& layerSelected, int currentRecipe);
 
 	void menuSelectLayerVeggies(string& layerName, bool& layerSelected, int currentRecipe);
+
+	void menuSelectLayerSpread(string& layerName, bool& layerSelected, int currentRecipe);
 
 	void menuSelectEmployeeGame();
 

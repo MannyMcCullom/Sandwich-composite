@@ -134,6 +134,7 @@
     <ClCompile Include="meat.cpp" />
     <ClCompile Include="sandwichType.cpp" />
     <ClCompile Include="source.cpp" />
+    <ClCompile Include="spreadType.cpp" />
     <ClCompile Include="Veggies.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +145,7 @@
     <ClInclude Include="meat.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="sandwichType.h" />
+    <ClInclude Include="spreadType.h" />
     <ClInclude Include="Veggies.h" />
   </ItemGroup>
   <ItemGroup>
